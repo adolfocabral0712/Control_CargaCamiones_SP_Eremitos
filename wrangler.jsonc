@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
 
-  "name": "control-carga-camiones-sp-eremitos",
+  "name": "control-cargacamiones-sp-eremitos",
 
   "main": "src/index.js",
 
