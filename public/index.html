@@ -5,7 +5,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1"
   >
 
   <meta name="color-scheme" content="light">
@@ -83,6 +83,9 @@
     }
 
     .encabezado {
+      padding:
+        24px
+        clamp(16px, 4vw, 42px);
       background:
         linear-gradient(
           135deg,
@@ -90,16 +93,13 @@
           var(--verde-700)
         );
       color: var(--blanco);
-      padding:
-        24px
-        clamp(16px, 4vw, 42px);
       box-shadow: var(--sombra);
     }
 
     .encabezado-contenido {
+      display: flex;
       width: min(1600px, 100%);
       margin: 0 auto;
-      display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
@@ -109,7 +109,6 @@
       margin: 0;
       font-size: clamp(1.35rem, 3vw, 2rem);
       line-height: 1.15;
-      letter-spacing: -0.02em;
     }
 
     .encabezado p {
@@ -120,7 +119,7 @@
 
     .actualizacion {
       flex: 0 0 auto;
-      min-width: 215px;
+      min-width: 230px;
       padding: 12px 15px;
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 12px;
@@ -130,18 +129,18 @@
 
     .actualizacion-etiqueta {
       display: block;
-      margin-bottom: 4px;
-      color: rgba(255, 255, 255, 0.70);
+      margin-bottom: 5px;
+      color: rgba(255, 255, 255, 0.72);
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .actualizacion-valor {
       display: block;
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 800;
     }
 
     .contenedor {
@@ -162,6 +161,7 @@
       padding: 14px 17px;
       border-bottom: 1px solid var(--borde);
       background: #f8fbf9;
+      text-align: center;
     }
 
     .resumen-general-cabecera h2 {
@@ -171,53 +171,9 @@
     }
 
     .resumen-general-cabecera p {
-      margin: 4px 0 0;
+      margin: 5px 0 0;
       color: var(--texto-suave);
       font-size: 0.78rem;
-    }
-
-    .resumen-general table {
-      min-width: 0;
-      font-size: 0.82rem;
-    }
-
-    .resumen-general thead th {
-      position: static;
-    }
-
-    .resumen-general tbody tr:hover {
-      background: var(--rojo-50);
-    }
-
-    .resumen-seccion {
-      color: var(--verde-950);
-      font-weight: 900;
-    }
-
-    .resumen-error-numero {
-      color: var(--rojo-700);
-      font-size: 1.15rem;
-      font-weight: 900;
-    }
-
-    .resumen-sin-errores {
-      color: var(--verde-700);
-    }
-
-    .resumen-ver {
-      min-height: 36px;
-      padding: 0 14px;
-      border: 1px solid var(--rojo-700);
-      border-radius: 9px;
-      background: var(--rojo-700);
-      color: var(--blanco);
-      font-size: 0.76rem;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .resumen-ver:hover {
-      background: var(--rojo-900);
     }
 
     .pestanas {
@@ -238,22 +194,13 @@
       border-radius: 11px;
       background: transparent;
       color: var(--texto-suave);
-      font-weight: 800;
-      letter-spacing: 0.025em;
+      font-weight: 900;
       cursor: pointer;
-      transition:
-        background 160ms ease,
-        color 160ms ease,
-        transform 160ms ease;
     }
 
     .pestana:hover {
       background: var(--verde-50);
       color: var(--verde-800);
-    }
-
-    .pestana:active {
-      transform: scale(0.99);
     }
 
     .pestana.activa {
@@ -270,10 +217,10 @@
 
     .seccion-titulo {
       display: flex;
+      margin-bottom: 16px;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 16px;
     }
 
     .seccion-titulo h2 {
@@ -289,14 +236,13 @@
     }
 
     .boton-recargar {
-      flex: 0 0 auto;
       min-height: 42px;
       padding: 0 16px;
       border: 1px solid var(--verde-700);
       border-radius: 10px;
       background: var(--blanco);
       color: var(--verde-800);
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
     }
 
@@ -313,25 +259,18 @@
     }
 
     .kpi {
-      min-height: 116px;
+      width: 100%;
+      min-height: 125px;
       padding: 18px;
       border: 1px solid var(--borde);
       border-radius: 16px;
       background: var(--blanco);
       box-shadow: var(--sombra-suave);
       text-align: center;
-      transition:
-        transform 160ms ease,
-        box-shadow 160ms ease,
-        border-color 160ms ease;
-    }
-
-    button.kpi {
-      width: 100%;
       cursor: pointer;
     }
 
-    button.kpi:hover {
+    .kpi:hover {
       transform: translateY(-2px);
       box-shadow: var(--sombra);
     }
@@ -341,7 +280,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }
 
     .kpi-titulo {
@@ -417,11 +356,11 @@
 
     .herramientas {
       display: flex;
+      margin-bottom: 14px;
+      padding: 14px;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      margin-bottom: 14px;
-      padding: 14px;
       border: 1px solid var(--borde);
       border-radius: 14px;
       background: var(--blanco);
@@ -475,13 +414,8 @@
       background: var(--blanco);
       color: var(--texto-suave);
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
-    }
-
-    .filtro:hover {
-      border-color: var(--verde-600);
-      color: var(--verde-800);
     }
 
     .filtro.activo {
@@ -505,11 +439,11 @@
 
     .tabla-informacion {
       display: flex;
+      min-height: 47px;
+      padding: 10px 15px;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      min-height: 47px;
-      padding: 10px 15px;
       border-bottom: 1px solid var(--borde);
       background: #f8fbf9;
       color: var(--texto-suave);
@@ -535,20 +469,29 @@
       max-height: calc(100vh - 300px);
       min-height: 260px;
       overflow: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
       width: 100%;
-      min-width: 1200px;
       border-collapse: separate;
       border-spacing: 0;
       font-size: 0.78rem;
     }
 
+    .tabla-conductores {
+      min-width: 900px;
+    }
+
+    .tabla-vehiculos {
+      min-width: 1200px;
+    }
+
     th,
     td {
       padding: 11px 10px;
-      border-right: 1px solid #e5ebe7;
+      border-right: 1px solid #e5ebeebe7;
       border-bottom: 1px solid #e5ebe7;
       text-align: center;
       vertical-align: middle;
@@ -575,24 +518,14 @@
       text-transform: uppercase;
       white-space: normal;
       overflow-wrap: anywhere;
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
     }
 
     .encabezado-linea {
       display: block;
     }
 
-    .tabla-conductores {
-      min-width: 900px;
-    }
-
-    .tabla-vehiculos {
-      min-width: 1200px;
-    }
-
     tbody tr {
       background: var(--blanco);
-      transition: background 120ms ease;
     }
 
     tbody tr:hover {
@@ -622,11 +555,11 @@
 
     .estado {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
       min-width: 78px;
       min-height: 27px;
       padding: 4px 9px;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
       font-size: 0.69rem;
       font-weight: 900;
@@ -646,26 +579,6 @@
     .estado-aviso {
       background: var(--amarillo-100);
       color: var(--amarillo-700);
-    }
-
-    .booleano {
-      display: inline-grid;
-      width: 25px;
-      height: 25px;
-      place-items: center;
-      border-radius: 50%;
-      font-size: 0.76rem;
-      font-weight: 900;
-    }
-
-    .booleano-si {
-      background: var(--verde-100);
-      color: var(--verde-800);
-    }
-
-    .booleano-no {
-      background: var(--rojo-100);
-      color: var(--rojo-900);
     }
 
     .sin-resultados {
@@ -715,30 +628,14 @@
       box-shadow: var(--sombra-suave);
     }
 
-    .mensaje-error h2 {
-      margin: 0 0 10px;
-    }
-
-    .mensaje-error p {
-      margin: 6px 0;
-    }
-
-    .mensaje-error code {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 6px 9px;
-      border-radius: 7px;
-      background: rgba(141, 27, 27, 0.08);
-    }
-
     .modal-fondo {
       position: fixed;
       inset: 0;
       z-index: 1000;
       display: none;
+      padding: 18px;
       align-items: center;
       justify-content: center;
-      padding: 18px;
       background: rgba(8, 26, 20, 0.68);
       backdrop-filter: blur(3px);
     }
@@ -761,10 +658,10 @@
 
     .modal-cabecera {
       display: flex;
+      padding: 18px 20px;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 18px 20px;
       background:
         linear-gradient(
           135deg,
@@ -799,10 +696,6 @@
       cursor: pointer;
     }
 
-    .modal-cerrar:hover {
-      background: rgba(255, 255, 255, 0.20);
-    }
-
     .modal-cuerpo {
       overflow: auto;
       padding: 16px;
@@ -821,9 +714,9 @@
         minmax(190px, 1.2fr)
         minmax(190px, 1.4fr)
         minmax(220px, 2fr);
+      padding: 13px 14px;
       align-items: center;
       gap: 12px;
-      padding: 13px 14px;
       border: 1px solid var(--rojo-200);
       border-left: 5px solid var(--rojo-700);
       border-radius: 12px;
@@ -866,18 +759,6 @@
       text-align: center;
     }
 
-    .modal-vacio-icono {
-      display: grid;
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 13px;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--verde-100);
-      font-size: 1.6rem;
-      font-weight: 900;
-    }
-
     @media (max-width: 900px) {
       .encabezado-contenido,
       .seccion-titulo,
@@ -886,20 +767,12 @@
         flex-direction: column;
       }
 
-      .actualizacion {
-        width: 100%;
-        min-width: 0;
-        text-align: left;
-      }
-
-      .boton-recargar {
-        width: 100%;
-      }
-
+      .actualizacion,
+      .boton-recargar,
       .buscador-contenedor {
         width: 100%;
+        min-width: 0;
         max-width: none;
-        flex-basis: auto;
       }
 
       .filtros {
@@ -922,17 +795,12 @@
       }
 
       .contenedor {
-        width: min(100% - 18px, 1600px);
+        width: calc(100% - 18px);
         margin-top: 14px;
       }
 
-      .pestanas {
-        gap: 6px;
-      }
-
-      .pestana {
-        min-height: 46px;
-        font-size: 0.8rem;
+      .actualizacion {
+        text-align: center;
       }
 
       .resumen-general {
@@ -957,7 +825,8 @@
 
       .resumen-general tbody tr {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
         gap: 9px;
         margin-bottom: 10px;
         padding: 13px;
@@ -1002,6 +871,16 @@
 
       .resumen-ver {
         width: 100%;
+        min-height: 40px;
+      }
+
+      .pestanas {
+        gap: 6px;
+      }
+
+      .pestana {
+        min-height: 46px;
+        font-size: 0.8rem;
       }
 
       .kpis {
@@ -1010,12 +889,7 @@
       }
 
       .kpi {
-        min-height: 96px;
-      }
-
-      .kpi-cabecera {
-        flex-direction: column;
-        gap: 8px;
+        min-height: 110px;
       }
 
       .tabla-informacion {
@@ -1025,12 +899,6 @@
 
       .tabla-scroll {
         max-height: calc(100vh - 220px);
-        overscroll-behavior-x: contain;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      table {
-        font-size: 0.69rem;
       }
 
       .tabla-conductores {
@@ -1050,7 +918,6 @@
         min-width: 74px;
         max-width: 110px;
         font-size: 0.62rem;
-        letter-spacing: 0.02em;
       }
 
       .error-item {
@@ -1071,6 +938,7 @@
 
       <div>
         <h1>Control de Conductores y Vehículos</h1>
+
         <p>
           Validación de existencia, actividad y empresa registrada
         </p>
@@ -1100,7 +968,6 @@
 
       <button
         class="pestana activa"
-        id="botonConductores"
         type="button"
         data-seccion="conductores"
       >
@@ -1109,7 +976,6 @@
 
       <button
         class="pestana"
-        id="botonVehiculos"
         type="button"
         data-seccion="vehiculos"
       >
@@ -1143,7 +1009,10 @@
       <div class="modal-cabecera">
 
         <div>
-          <h2 id="modalTitulo">Registros observados</h2>
+          <h2 id="modalTitulo">
+            Registros observados
+          </h2>
+
           <p id="modalSubtitulo"></p>
         </div>
 
@@ -1158,7 +1027,10 @@
 
       </div>
 
-      <div class="modal-cuerpo" id="modalCuerpo"></div>
+      <div
+        class="modal-cuerpo"
+        id="modalCuerpo"
+      ></div>
 
     </div>
   </div>
@@ -1166,12 +1038,12 @@
   <script>
     "use strict";
 
-    const ARCHIVO_JSON =
-      "https://dl.dropbox.com/scl/fi/o7o0dw5xmuyqsp2j6ngqs/ControlChoferesVehiculos.json?rlkey=lv99rio71h9jkzdmxlhjkrlcc&dl=1";
+    const ARCHIVO_JSON = "/api/datos";
 
     const configuracion = {
       conductores: {
         titulo: "Control de conductores",
+
         descripcion:
           "Validación en SP, eRemito y comparación de empresa.",
 
@@ -1229,6 +1101,7 @@
 
       vehiculos: {
         titulo: "Control de vehículos",
+
         descripcion:
           "Control de camiones en SP y eRemito, y acoplados en SP.",
 
@@ -1266,7 +1139,7 @@
           },
           {
             campo: "comparacion_empresa_camion_sp",
-            titulo: "Empresa camión SP",
+            titulo: "Comparación camión SP",
             tipo: "estado"
           },
           {
@@ -1276,7 +1149,7 @@
           },
           {
             campo: "comparacion_empresa_camion_eremito",
-            titulo: "Empresa camión eRemito",
+            titulo: "Comparación camión eRemito",
             tipo: "estado"
           },
           {
@@ -1286,7 +1159,7 @@
           },
           {
             campo: "comparacion_empresa_acoplado_sp",
-            titulo: "Empresa acoplado SP",
+            titulo: "Comparación acoplado SP",
             tipo: "estado"
           },
           {
@@ -1369,26 +1242,6 @@
     }
 
 
-    function esCorrecto(registro) {
-      const resultado = normalizarTexto(
-        registro.resultado_general
-      );
-
-      const empresa = normalizarTexto(
-        registro.empresa
-      );
-
-      const esExcepcionAcoplado =
-        resultado === "revisar empresa del acoplado en sp" &&
-        (
-          empresa.includes("julcat") ||
-          empresa.includes("jucajo")
-        );
-
-      return resultado === "correcto" || esExcepcionAcoplado;
-    }
-
-
     function formatearFechaActualizacion(valor) {
       const texto = textoSeguro(valor).trim();
 
@@ -1400,9 +1253,48 @@
         return texto || "Sin información";
       }
 
-      const [, anio, mes, dia, hora, minuto] = coincidencia;
+      const [
+        ,
+        anio,
+        mes,
+        dia,
+        hora,
+        minuto
+      ] = coincidencia;
 
       return `${dia}/${mes}/${anio} ${hora}:${minuto}`;
+    }
+
+
+    function esExcepcionJulcatJucajo(registro) {
+      if (seccionActual !== "vehiculos") {
+        return false;
+      }
+
+      const resultado =
+        normalizarTexto(registro.resultado_general);
+
+      const empresa =
+        normalizarTexto(registro.empresa);
+
+      return (
+        resultado ===
+          "revisar empresa del acoplado en sp" &&
+        (
+          empresa.includes("julcat") ||
+          empresa.includes("jucajo")
+        )
+      );
+    }
+
+
+    function esCorrecto(registro) {
+      return (
+        normalizarTexto(
+          registro.resultado_general
+        ) === "correcto" ||
+        esExcepcionJulcatJucajo(registro)
+      );
     }
 
 
@@ -1429,8 +1321,11 @@
 
     function ordenarPorEmpresa(registros) {
       return [...registros].sort((a, b) => {
-        const empresaA = textoSeguro(a.empresa).trim();
-        const empresaB = textoSeguro(b.empresa).trim();
+        const empresaA =
+          textoSeguro(a.empresa).trim();
+
+        const empresaB =
+          textoSeguro(b.empresa).trim();
 
         return empresaA.localeCompare(
           empresaB,
@@ -1445,29 +1340,39 @@
 
 
     function obtenerRegistrosFiltrados() {
-      let registros = [...obtenerRegistrosActuales()];
+      let registros =
+        ordenarPorEmpresa(
+          obtenerRegistrosActuales()
+        );
 
       if (filtroActual === "correctos") {
-        registros = registros.filter(esCorrecto);
+        registros =
+          registros.filter(esCorrecto);
       }
 
       if (filtroActual === "errores") {
-        registros = registros.filter(
-          registro => !esCorrecto(registro)
-        );
+        registros =
+          registros.filter(
+            registro => !esCorrecto(registro)
+          );
       }
 
-      const busqueda = normalizarTexto(busquedaActual);
+      const busqueda =
+        normalizarTexto(busquedaActual);
 
       if (busqueda) {
-        registros = registros.filter(registro => {
-          return Object.values(registro).some(valor => {
-            return normalizarTexto(valor).includes(busqueda);
+        registros =
+          registros.filter(registro => {
+            return Object
+              .values(registro)
+              .some(valor => {
+                return normalizarTexto(valor)
+                  .includes(busqueda);
+              });
           });
-        });
       }
 
-      return ordenarPorEmpresa(registros);
+      return registros;
     }
 
 
@@ -1487,7 +1392,6 @@
         "no existe",
         "revisar",
         "sin cedula",
-        "sin matrícula",
         "sin matricula",
         "sin acoplado",
         "tipo incorrecto",
@@ -1514,36 +1418,13 @@
     }
 
 
-    function renderBooleano(valor) {
-      const verdadero =
-        valor === true ||
-        normalizarTexto(valor) === "true" ||
-        normalizarTexto(valor) === "si";
-
-      return `
-        <span
-          class="booleano ${
-            verdadero
-              ? "booleano-si"
-              : "booleano-no"
-          }"
-          title="${verdadero ? "Sí" : "No"}"
-        >
-          ${verdadero ? "✓" : "✕"}
-        </span>
-      `;
-    }
-
-
     function renderCelda(registro, columna) {
-      const valor = resultadoMostrado(registro, columna);
-
-      if (columna.tipo === "booleano") {
-        return renderBooleano(valor);
-      }
+      const valor =
+        resultadoMostrado(registro, columna);
 
       if (columna.tipo === "estado") {
-        const texto = textoSeguro(valor) || "SIN DATOS";
+        const texto =
+          textoSeguro(valor) || "SIN DATOS";
 
         return `
           <span class="estado ${claseEstado(texto)}">
@@ -1556,9 +1437,49 @@
     }
 
 
-    function contarResultados(registros) {
-      const correctos = registros.filter(esCorrecto).length;
-      const errores = registros.length - correctos;
+    function renderTituloEncabezado(titulo) {
+      const texto =
+        textoSeguro(titulo).trim();
+
+      const partes =
+        texto.split(/\s+/);
+
+      if (partes.length <= 1) {
+        return escaparHtml(texto);
+      }
+
+      const primeraPalabra =
+        partes.shift();
+
+      const restoTitulo =
+        partes.join(" ");
+
+      return `
+        <span class="encabezado-linea">
+          ${escaparHtml(primeraPalabra)}
+        </span>
+
+        <span class="encabezado-linea">
+          ${escaparHtml(restoTitulo)}
+        </span>
+      `;
+    }
+
+
+    function contarResultados(registros, seccion) {
+      const seccionAnterior = seccionActual;
+
+      if (seccion) {
+        seccionActual = seccion;
+      }
+
+      const correctos =
+        registros.filter(esCorrecto).length;
+
+      const errores =
+        registros.length - correctos;
+
+      seccionActual = seccionAnterior;
 
       return {
         total: registros.length,
@@ -1568,80 +1489,80 @@
     }
 
 
-    function renderTituloEncabezado(titulo) {
-      const texto = textoSeguro(titulo).trim();
-      const partes = texto.split(/\s+/);
-
-      if (partes.length <= 1) {
-        return escaparHtml(texto);
-      }
-
-      const primeraPalabra = partes.shift();
-      const restoTitulo = partes.join(" ");
-
-      return `
-        <span class="encabezado-linea">
-          ${escaparHtml(primeraPalabra)}
-        </span>
-        <span class="encabezado-linea">
-          ${escaparHtml(restoTitulo)}
-        </span>
-      `;
-    }
-
-
     function renderResumenGeneral() {
       const contenedor =
-        document.getElementById("resumenGeneral");
+        document.getElementById(
+          "resumenGeneral"
+        );
 
-      if (!contenedor) {
-        return;
-      }
+      const filas =
+        ["conductores", "vehiculos"]
+          .map(seccion => {
+            const registros =
+              Array.isArray(datos[seccion])
+                ? datos[seccion]
+                : [];
 
-      const filas = ["conductores", "vehiculos"]
-        .map(seccion => {
-          const registros = Array.isArray(datos[seccion])
-            ? datos[seccion]
-            : [];
+            const conteo =
+              contarResultados(
+                registros,
+                seccion
+              );
 
-          const conteo = contarResultados(registros);
-          const nombre = seccion === "conductores"
-            ? "CONDUCTORES"
-            : "VEHÍCULOS";
+            const nombre =
+              seccion === "conductores"
+                ? "CONDUCTORES"
+                : "VEHÍCULOS";
 
-          return `
-            <tr>
-              <td class="resumen-seccion">${nombre}</td>
-              <td>${conteo.total}</td>
-              <td>
-                <span class="resumen-error-numero ${
-                  conteo.errores === 0
-                    ? "resumen-sin-errores"
-                    : ""
-                }">
-                  ${conteo.errores}
-                </span>
-              </td>
-              <td>
-                <button
-                  class="resumen-ver"
-                  type="button"
-                  data-ver-errores="${seccion}"
-                >
-                  VER ERRORES
-                </button>
-              </td>
-            </tr>
-          `;
-        })
-        .join("");
+            return `
+              <tr>
+                <td class="resumen-seccion">
+                  ${nombre}
+                </td>
+
+                <td>
+                  ${conteo.total}
+                </td>
+
+                <td>
+                  <span
+                    class="
+                      resumen-error-numero
+                      ${
+                        conteo.errores === 0
+                          ? "resumen-sin-errores"
+                          : ""
+                      }
+                    "
+                  >
+                    ${conteo.errores}
+                  </span>
+                </td>
+
+                <td>
+                  <button
+                    class="resumen-ver"
+                    type="button"
+                    data-ver-errores="${seccion}"
+                  >
+                    VER ERRORES
+                  </button>
+                </td>
+              </tr>
+            `;
+          })
+          .join("");
 
       contenedor.innerHTML = `
         <div class="resumen-general">
+
           <div class="resumen-general-cabecera">
-            <h2>Resumen general de errores</h2>
+            <h2>
+              Resumen general de errores
+            </h2>
+
             <p>
-              Selecciona VER ERRORES para ir directamente al detalle.
+              Selecciona VER ERRORES para ir al detalle.
             </p>
           </div>
 
@@ -1654,25 +1575,43 @@
                 <th>Acción</th>
               </tr>
             </thead>
-            <tbody>${filas}</tbody>
+
+            <tbody>
+              ${filas}
+            </tbody>
           </table>
+
         </div>
       `;
 
       contenedor
-        .querySelectorAll("[data-ver-errores]")
+        .querySelectorAll(
+          "[data-ver-errores]"
+        )
         .forEach(boton => {
-          boton.addEventListener("click", () => {
-            cambiarSeccion(boton.dataset.verErrores);
-            abrirModalErrores();
-          });
+          boton.addEventListener(
+            "click",
+            () => {
+              cambiarSeccion(
+                boton.dataset.verErrores
+              );
+
+              abrirModalErrores();
+            }
+          );
         });
     }
 
 
     function renderKpis() {
-      const registros = obtenerRegistrosActuales();
-      const conteo = contarResultados(registros);
+      const registros =
+        obtenerRegistrosActuales();
+
+      const conteo =
+        contarResultados(
+          registros,
+          seccionActual
+        );
 
       return `
         <section class="kpis">
@@ -1687,7 +1626,9 @@
                 Total registros
               </span>
 
-              <span class="kpi-icono">#</span>
+              <span class="kpi-icono">
+                #
+              </span>
             </span>
 
             <span class="kpi-valor">
@@ -1709,7 +1650,9 @@
                 Correctos
               </span>
 
-              <span class="kpi-icono">✓</span>
+              <span class="kpi-icono">
+                ✓
+              </span>
             </span>
 
             <span class="kpi-valor">
@@ -1731,7 +1674,9 @@
                 Con errores
               </span>
 
-              <span class="kpi-icono">!</span>
+              <span class="kpi-icono">
+                !
+              </span>
             </span>
 
             <span class="kpi-valor">
@@ -1749,20 +1694,28 @@
 
 
     function renderTabla() {
-      const config = configuracion[seccionActual];
-      const registros = obtenerRegistrosFiltrados();
+      const config =
+        configuracion[seccionActual];
 
-      const encabezados = config.columnas
-        .map(columna => {
-          return `
-            <th>
-              ${renderTituloEncabezado(columna.titulo)}
-            </th>
-          `;
-        })
-        .join("");
+      const registros =
+        obtenerRegistrosFiltrados();
 
-      let cuerpo;
+      const encabezados =
+        config.columnas
+          .map(columna => {
+            return `
+              <th>
+                ${
+                  renderTituloEncabezado(
+                    columna.titulo
+                  )
+                }
+              </th>
+            `;
+          })
+          .join("");
+
+      let cuerpo = "";
 
       if (!registros.length) {
         cuerpo = `
@@ -1771,36 +1724,52 @@
               colspan="${config.columnas.length}"
               class="sin-resultados"
             >
-              No se encontraron registros para los filtros seleccionados.
+              No se encontraron registros.
             </td>
           </tr>
         `;
       } else {
-        cuerpo = registros
-          .map(registro => {
-            const filaError = !esCorrecto(registro);
+        cuerpo =
+          registros
+            .map(registro => {
+              const filaError =
+                !esCorrecto(registro);
 
-            const celdas = config.columnas
-              .map(columna => {
-                return `
-                  <td class="${
-                    columna.principal
-                      ? "celda-principal"
+              const celdas =
+                config.columnas
+                  .map(columna => {
+                    return `
+                      <td
+                        class="${
+                          columna.principal
+                            ? "celda-principal"
+                            : ""
+                        }"
+                      >
+                        ${
+                          renderCelda(
+                            registro,
+                            columna
+                          )
+                        }
+                      </td>
+                    `;
+                  })
+                  .join("");
+
+              return `
+                <tr
+                  class="${
+                    filaError
+                      ? "fila-error"
                       : ""
-                  }">
-                    ${renderCelda(registro, columna)}
-                  </td>
-                `;
-              })
-              .join("");
-
-            return `
-              <tr class="${filaError ? "fila-error" : ""}">
-                ${celdas}
-              </tr>
-            `;
-          })
-          .join("");
+                  }"
+                >
+                  ${celdas}
+                </tr>
+              `;
+            })
+            .join("");
       }
 
       return `
@@ -1810,9 +1779,16 @@
 
             <span>
               Mostrando
-              <strong>${registros.length}</strong>
+              <strong>
+                ${registros.length}
+              </strong>
               de
-              <strong>${obtenerRegistrosActuales().length}</strong>
+              <strong>
+                ${
+                  obtenerRegistrosActuales()
+                    .length
+                }
+              </strong>
               registros
             </span>
 
@@ -1824,17 +1800,21 @@
           </div>
 
           <div class="tabla-scroll">
-            <table class="tabla-${seccionActual}">
 
+            <table
+              class="tabla-${seccionActual}"
+            >
               <thead>
-                <tr>${encabezados}</tr>
+                <tr>
+                  ${encabezados}
+                </tr>
               </thead>
 
               <tbody>
                 ${cuerpo}
               </tbody>
-
             </table>
+
           </div>
 
         </section>
@@ -1843,14 +1823,20 @@
 
 
     function renderDashboard() {
-      const config = configuracion[seccionActual];
+      const config =
+        configuracion[seccionActual];
 
       contenidoPrincipal.innerHTML = `
         <section class="seccion-titulo">
 
           <div>
-            <h2>${escaparHtml(config.titulo)}</h2>
-            <p>${escaparHtml(config.descripcion)}</p>
+            <h2>
+              ${escaparHtml(config.titulo)}
+            </h2>
+
+            <p>
+              ${escaparHtml(config.descripcion)}
+            </p>
           </div>
 
           <button
@@ -1868,7 +1854,10 @@
         <section class="herramientas">
 
           <div class="buscador-contenedor">
-            <span class="buscador-icono">⌕</span>
+
+            <span class="buscador-icono">
+              ⌕
+            </span>
 
             <input
               class="buscador"
@@ -1878,6 +1867,7 @@
               value="${escaparHtml(busquedaActual)}"
               autocomplete="off"
             >
+
           </div>
 
           <div class="filtros">
@@ -1907,11 +1897,15 @@
             </button>
 
             <button
-              class="filtro filtro-error ${
-                filtroActual === "errores"
-                  ? "activo"
-                  : ""
-              }"
+              class="
+                filtro
+                filtro-error
+                ${
+                  filtroActual === "errores"
+                    ? "activo"
+                    : ""
+                }
+              "
               type="button"
               data-filtro="errores"
             >
@@ -1933,10 +1927,13 @@
 
     function actualizarSoloTabla() {
       const contenedorTabla =
-        document.getElementById("contenedorTabla");
+        document.getElementById(
+          "contenedorTabla"
+        );
 
       if (contenedorTabla) {
-        contenedorTabla.innerHTML = renderTabla();
+        contenedorTabla.innerHTML =
+          renderTabla();
       }
 
       document
@@ -1944,7 +1941,8 @@
         .forEach(boton => {
           boton.classList.toggle(
             "activo",
-            boton.dataset.filtro === filtroActual
+            boton.dataset.filtro ===
+              filtroActual
           );
         });
     }
@@ -1952,61 +1950,82 @@
 
     function conectarEventosDashboard() {
       const botonRecargar =
-        document.getElementById("botonRecargar");
+        document.getElementById(
+          "botonRecargar"
+        );
 
       const buscador =
-        document.getElementById("buscador");
-
-      if (botonRecargar) {
-        botonRecargar.addEventListener(
-          "click",
-          cargarDatos
+        document.getElementById(
+          "buscador"
         );
-      }
 
-      if (buscador) {
-        buscador.addEventListener("input", evento => {
-          busquedaActual = evento.target.value;
+      botonRecargar?.addEventListener(
+        "click",
+        cargarDatos
+      );
+
+      buscador?.addEventListener(
+        "input",
+        evento => {
+          busquedaActual =
+            evento.target.value;
+
           actualizarSoloTabla();
-        });
-      }
+        }
+      );
 
       document
         .querySelectorAll("[data-filtro]")
         .forEach(boton => {
-          boton.addEventListener("click", () => {
-            filtroActual = boton.dataset.filtro;
-            actualizarSoloTabla();
-          });
+          boton.addEventListener(
+            "click",
+            () => {
+              filtroActual =
+                boton.dataset.filtro;
+
+              actualizarSoloTabla();
+            }
+          );
         });
 
       document
-        .querySelectorAll("[data-accion-kpi]")
+        .querySelectorAll(
+          "[data-accion-kpi]"
+        )
         .forEach(boton => {
-          boton.addEventListener("click", () => {
-            const accion =
-              boton.dataset.accionKpi;
+          boton.addEventListener(
+            "click",
+            () => {
+              const accion =
+                boton.dataset.accionKpi;
 
-            if (accion === "errores") {
-              abrirModalErrores();
-              return;
+              if (accion === "errores") {
+                abrirModalErrores();
+                return;
+              }
+
+              filtroActual = accion;
+              actualizarSoloTabla();
             }
-
-            filtroActual = accion;
-            actualizarSoloTabla();
-          });
+          );
         });
     }
 
 
     function abrirModalErrores() {
-      const registros = ordenarPorEmpresa(
-        obtenerRegistrosActuales()
-          .filter(registro => !esCorrecto(registro))
-      );
+      const registros =
+        ordenarPorEmpresa(
+          obtenerRegistrosActuales()
+            .filter(
+              registro => !esCorrecto(registro)
+            )
+        );
 
-      const config = configuracion[seccionActual];
-      const modalConfig = config.modal;
+      const config =
+        configuracion[seccionActual];
+
+      const modalConfig =
+        config.modal;
 
       modalTitulo.textContent =
         seccionActual === "conductores"
@@ -2019,87 +2038,119 @@
       if (!registros.length) {
         modalCuerpo.innerHTML = `
           <div class="modal-vacio">
-            <div class="modal-vacio-icono">✓</div>
-            <strong>No hay registros con errores.</strong>
+            <strong>
+              ✓ No hay registros con errores.
+            </strong>
           </div>
         `;
       } else {
         modalCuerpo.innerHTML = `
           <div class="lista-errores">
 
-            ${registros.map(registro => {
-              return `
-                <article class="error-item">
+            ${
+              registros
+                .map(registro => {
+                  return `
+                    <article class="error-item">
 
-                  <div class="error-dato">
-                    <span class="error-etiqueta">
-                      ${escaparHtml(
-                        modalConfig.identificadorTitulo
-                      )}
-                    </span>
+                      <div class="error-dato">
+                        <span class="error-etiqueta">
+                          ${
+                            escaparHtml(
+                              modalConfig
+                                .identificadorTitulo
+                            )
+                          }
+                        </span>
 
-                    <span class="error-valor">
-                      ${escaparHtml(
-                        registro[
-                          modalConfig.identificador
-                        ]
-                      ) || "—"}
-                    </span>
-                  </div>
+                        <span class="error-valor">
+                          ${
+                            escaparHtml(
+                              registro[
+                                modalConfig
+                                  .identificador
+                              ]
+                            ) || "—"
+                          }
+                        </span>
+                      </div>
 
-                  <div class="error-dato">
-                    <span class="error-etiqueta">
-                      ${escaparHtml(
-                        modalConfig.nombreTitulo
-                      )}
-                    </span>
+                      <div class="error-dato">
+                        <span class="error-etiqueta">
+                          ${
+                            escaparHtml(
+                              modalConfig.nombreTitulo
+                            )
+                          }
+                        </span>
 
-                    <span class="error-valor">
-                      ${escaparHtml(
-                        registro[modalConfig.nombre]
-                      ) || "—"}
-                    </span>
-                  </div>
+                        <span class="error-valor">
+                          ${
+                            escaparHtml(
+                              registro[
+                                modalConfig.nombre
+                              ]
+                            ) || "—"
+                          }
+                        </span>
+                      </div>
 
-                  <div class="error-dato">
-                    <span class="error-etiqueta">
-                      Empresa hoy
-                    </span>
+                      <div class="error-dato">
+                        <span class="error-etiqueta">
+                          Empresa hoy
+                        </span>
 
-                    <span class="error-valor">
-                      ${escaparHtml(
-                        registro.empresa
-                      ) || "—"}
-                    </span>
-                  </div>
+                        <span class="error-valor">
+                          ${
+                            escaparHtml(
+                              registro.empresa
+                            ) || "—"
+                          }
+                        </span>
+                      </div>
 
-                  <div class="error-dato error-resultado">
-                    <span class="error-etiqueta">
-                      Observación
-                    </span>
+                      <div
+                        class="
+                          error-dato
+                          error-resultado
+                        "
+                      >
+                        <span class="error-etiqueta">
+                          Observación
+                        </span>
 
-                    <span class="error-valor">
-                      ${escaparHtml(
-                        registro.resultado_general
-                      ) || "SIN INFORMACIÓN"}
-                    </span>
-                  </div>
+                        <span class="error-valor">
+                          ${
+                            escaparHtml(
+                              registro
+                                .resultado_general
+                            ) ||
+                            "SIN INFORMACIÓN"
+                          }
+                        </span>
+                      </div>
 
-                </article>
-              `;
-            }).join("")}
+                    </article>
+                  `;
+                })
+                .join("")
+            }
 
           </div>
         `;
       }
 
       modalFondo.classList.add("visible");
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow =
+        "hidden";
     }
 
 
     function cerrarModal() {
-      modalFondo.classList.remove("visible");
+      modalFondo.classList.remove(
+        "visible"
+      );
+
       document.body.style.overflow = "";
     }
 
@@ -2118,7 +2169,8 @@
         .forEach(boton => {
           boton.classList.toggle(
             "activa",
-            boton.dataset.seccion === nuevaSeccion
+            boton.dataset.seccion ===
+              nuevaSeccion
           );
         });
 
@@ -2135,15 +2187,20 @@
       contenidoPrincipal.innerHTML = `
         <div class="mensaje-error">
 
-          <h2>No se pudieron cargar los datos</h2>
+          <h2>
+            No se pudieron cargar los datos
+          </h2>
 
           <p>
-            Verifica que el archivo JSON esté en la misma carpeta
-            que el archivo index.html.
+            El Worker no pudo obtener el JSON.
+          </p>
+
+          <p>
+            Verifica el Secret:
           </p>
 
           <code>
-            ControlChoferesVehiculos.json
+            CONTROL_CHOFERES_JSON_URL
           </code>
 
           <p>
@@ -2166,25 +2223,36 @@
       `;
 
       try {
-        const separador =
-          ARCHIVO_JSON.includes("?")
-            ? "&"
-            : "?";
-
         const respuesta = await fetch(
-          `${ARCHIVO_JSON}${separador}v=${Date.now()}`,
+          `${ARCHIVO_JSON}?v=${Date.now()}`,
           {
             cache: "no-store"
           }
         );
 
         if (!respuesta.ok) {
+          let detalle = "";
+
+          try {
+            const errorJson =
+              await respuesta.json();
+
+            detalle =
+              errorJson.detalle ||
+              errorJson.error ||
+              "";
+          } catch {
+            detalle = "";
+          }
+
           throw new Error(
+            detalle ||
             `Error HTTP ${respuesta.status}`
           );
         }
 
-        const json = await respuesta.json();
+        const json =
+          await respuesta.json();
 
         datos = {
           actualizado:
@@ -2201,13 +2269,13 @@
               : []
         };
 
-            ultimaActualizacion.textContent =
-              formatearFechaActualizacion(
-                datos.actualizado
-              );
+        ultimaActualizacion.textContent =
+          formatearFechaActualizacion(
+            datos.actualizado
+          );
 
-            renderResumenGeneral();
-            renderDashboard();
+        renderResumenGeneral();
+        renderDashboard();
 
       } catch (error) {
         mostrarError(error);
@@ -2218,11 +2286,14 @@
     document
       .querySelectorAll("[data-seccion]")
       .forEach(boton => {
-        boton.addEventListener("click", () => {
-          cambiarSeccion(
-            boton.dataset.seccion
-          );
-        });
+        boton.addEventListener(
+          "click",
+          () => {
+            cambiarSeccion(
+              boton.dataset.seccion
+            );
+          }
+        );
       });
 
 
