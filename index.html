@@ -319,7 +319,7 @@
       border-radius: 16px;
       background: var(--blanco);
       box-shadow: var(--sombra-suave);
-      text-align: center;
+      text-align: left;
       transition:
         transform 160ms ease,
         box-shadow 160ms ease,
@@ -339,8 +339,7 @@
     .kpi-cabecera {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      justify-content: space-between;
       gap: 12px;
     }
 
@@ -564,30 +563,13 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      min-width: 92px;
-      max-width: 150px;
       background: var(--verde-900);
       color: var(--blanco);
       font-size: 0.71rem;
       font-weight: 900;
-      line-height: 1.25;
       letter-spacing: 0.035em;
       text-transform: uppercase;
-      white-space: normal;
-      overflow-wrap: anywhere;
       box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
-    }
-
-    .encabezado-linea {
-      display: block;
-    }
-
-    .tabla-conductores {
-      min-width: 1050px;
-    }
-
-    .tabla-vehiculos {
-      min-width: 1380px;
     }
 
     tbody tr {
@@ -916,7 +898,7 @@
       }
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 650px) {
       .encabezado {
         padding: 18px 15px;
       }
@@ -935,75 +917,6 @@
         font-size: 0.8rem;
       }
 
-      .resumen-general {
-        overflow: visible;
-      }
-
-      .resumen-general table,
-      .resumen-general tbody,
-      .resumen-general tr,
-      .resumen-general td {
-        display: block;
-        width: 100%;
-      }
-
-      .resumen-general thead {
-        display: none;
-      }
-
-      .resumen-general tbody {
-        padding: 10px;
-      }
-
-      .resumen-general tbody tr {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-        margin-bottom: 10px;
-        padding: 13px;
-        border: 1px solid var(--borde);
-        border-radius: 12px;
-        background: var(--blanco);
-      }
-
-      .resumen-general tbody tr:last-child {
-        margin-bottom: 0;
-      }
-
-      .resumen-general tbody td {
-        padding: 0;
-        border: 0;
-        text-align: center;
-        white-space: normal;
-      }
-
-      .resumen-general tbody td:nth-child(1),
-      .resumen-general tbody td:nth-child(4) {
-        grid-column: 1 / -1;
-      }
-
-      .resumen-general tbody td:nth-child(2)::before {
-        content: "TOTAL";
-      }
-
-      .resumen-general tbody td:nth-child(3)::before {
-        content: "CON ERRORES";
-      }
-
-      .resumen-general tbody td:nth-child(2)::before,
-      .resumen-general tbody td:nth-child(3)::before {
-        display: block;
-        margin-bottom: 4px;
-        color: var(--texto-suave);
-        font-size: 0.62rem;
-        font-weight: 900;
-        letter-spacing: 0.05em;
-      }
-
-      .resumen-ver {
-        width: 100%;
-      }
-
       .kpis {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -1013,11 +926,6 @@
         min-height: 96px;
       }
 
-      .kpi-cabecera {
-        flex-direction: column;
-        gap: 8px;
-      }
-
       .tabla-informacion {
         align-items: flex-start;
         flex-direction: column;
@@ -1025,32 +933,6 @@
 
       .tabla-scroll {
         max-height: calc(100vh - 220px);
-        overscroll-behavior-x: contain;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      table {
-        font-size: 0.69rem;
-      }
-
-      .tabla-conductores {
-        min-width: 900px;
-      }
-
-      .tabla-vehiculos {
-        min-width: 1160px;
-      }
-
-      th,
-      td {
-        padding: 9px 6px;
-      }
-
-      thead th {
-        min-width: 74px;
-        max-width: 110px;
-        font-size: 0.62rem;
-        letter-spacing: 0.02em;
       }
 
       .error-item {
@@ -1191,7 +1073,7 @@
           },
           {
             campo: "empresa",
-            titulo: "Empresa hoy"
+            titulo: "Empresa"
           },
           {
             campo: "existe_sp",
@@ -1255,7 +1137,7 @@
           },
           {
             campo: "empresa",
-            titulo: "Empresa hoy"
+            titulo: "Empresa"
           },
           {
             campo: "existe_camion_sp",
@@ -1414,23 +1296,6 @@
     }
 
 
-    function formatearFechaActualizacion(valor) {
-      const texto = textoSeguro(valor).trim();
-
-      const coincidencia = texto.match(
-        /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/
-      );
-
-      if (!coincidencia) {
-        return texto || "Sin información";
-      }
-
-      const [, anio, mes, dia, hora, minuto] = coincidencia;
-
-      return `${dia}/${mes}/${anio} ${hora}:${minuto}`;
-    }
-
-
     function resultadoMostrado(registro, columna) {
       if (
         columna.campo === "resultado_general" &&
@@ -1449,23 +1314,6 @@
       return Array.isArray(registros)
         ? registros
         : [];
-    }
-
-
-    function ordenarPorEmpresa(registros) {
-      return [...registros].sort((a, b) => {
-        const empresaA = textoSeguro(a.empresa).trim();
-        const empresaB = textoSeguro(b.empresa).trim();
-
-        return empresaA.localeCompare(
-          empresaB,
-          "es",
-          {
-            sensitivity: "base",
-            numeric: true
-          }
-        );
-      });
     }
 
 
@@ -1492,7 +1340,7 @@
         });
       }
 
-      return ordenarPorEmpresa(registros);
+      return registros;
     }
 
 
@@ -1590,28 +1438,6 @@
         correctos,
         errores
       };
-    }
-
-
-    function renderTituloEncabezado(titulo) {
-      const texto = textoSeguro(titulo).trim();
-      const partes = texto.split(/\s+/);
-
-      if (partes.length <= 1) {
-        return escaparHtml(texto);
-      }
-
-      const primeraPalabra = partes.shift();
-      const restoTitulo = partes.join(" ");
-
-      return `
-        <span class="encabezado-linea">
-          ${escaparHtml(primeraPalabra)}
-        </span>
-        <span class="encabezado-linea">
-          ${escaparHtml(restoTitulo)}
-        </span>
-      `;
     }
 
 
@@ -1781,7 +1607,7 @@
         .map(columna => {
           return `
             <th>
-              ${renderTituloEncabezado(columna.titulo)}
+              ${escaparHtml(columna.titulo)}
             </th>
           `;
         })
@@ -1849,7 +1675,7 @@
           </div>
 
           <div class="tabla-scroll">
-            <table class="tabla-${seccionActual}">
+            <table>
 
               <thead>
                 <tr>${encabezados}</tr>
@@ -2025,10 +1851,8 @@
 
 
     function abrirModalErrores() {
-      const registros = ordenarPorEmpresa(
-        obtenerRegistrosActuales()
-          .filter(registro => !esCorrecto(registro))
-      );
+      const registros = obtenerRegistrosActuales()
+        .filter(registro => !esCorrecto(registro));
 
       const config = configuracion[seccionActual];
       const modalConfig = config.modal;
@@ -2088,7 +1912,7 @@
 
                   <div class="error-dato">
                     <span class="error-etiqueta">
-                      Empresa hoy
+                      Empresa
                     </span>
 
                     <span class="error-valor">
@@ -2227,9 +2051,7 @@
         };
 
             ultimaActualizacion.textContent =
-              formatearFechaActualizacion(
-                datos.actualizado
-              );
+              datos.actualizado || "Sin información";
 
             renderResumenGeneral();
             renderDashboard();
