@@ -149,6 +149,77 @@
       margin: 24px auto 40px;
     }
 
+    .resumen-general {
+      margin-bottom: 18px;
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      border-radius: 15px;
+      background: var(--blanco);
+      box-shadow: var(--sombra-suave);
+    }
+
+    .resumen-general-cabecera {
+      padding: 14px 17px;
+      border-bottom: 1px solid var(--borde);
+      background: #f8fbf9;
+    }
+
+    .resumen-general-cabecera h2 {
+      margin: 0;
+      color: var(--verde-950);
+      font-size: 1rem;
+    }
+
+    .resumen-general-cabecera p {
+      margin: 4px 0 0;
+      color: var(--texto-suave);
+      font-size: 0.78rem;
+    }
+
+    .resumen-general table {
+      min-width: 0;
+      font-size: 0.82rem;
+    }
+
+    .resumen-general thead th {
+      position: static;
+    }
+
+    .resumen-general tbody tr:hover {
+      background: var(--rojo-50);
+    }
+
+    .resumen-seccion {
+      color: var(--verde-950);
+      font-weight: 900;
+    }
+
+    .resumen-error-numero {
+      color: var(--rojo-700);
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .resumen-sin-errores {
+      color: var(--verde-700);
+    }
+
+    .resumen-ver {
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid var(--rojo-700);
+      border-radius: 9px;
+      background: var(--rojo-700);
+      color: var(--blanco);
+      font-size: 0.76rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .resumen-ver:hover {
+      background: var(--rojo-900);
+    }
+
     .pestanas {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -905,6 +976,8 @@
 
   <main class="contenedor">
 
+    <section id="resumenGeneral"></section>
+
     <nav class="pestanas" aria-label="Secciones">
 
       <button
@@ -1204,10 +1277,34 @@
 
 
     function esCorrecto(registro) {
-      return (
-        normalizarTexto(registro.resultado_general) ===
-        "correcto"
+      const resultado = normalizarTexto(
+        registro.resultado_general
       );
+
+      const empresa = normalizarTexto(
+        registro.empresa
+      );
+
+      const esExcepcionAcoplado =
+        resultado === "revisar empresa del acoplado en sp" &&
+        (
+          empresa.includes("julcat") ||
+          empresa.includes("jucajo")
+        );
+
+      return resultado === "correcto" || esExcepcionAcoplado;
+    }
+
+
+    function resultadoMostrado(registro, columna) {
+      if (
+        columna.campo === "resultado_general" &&
+        esCorrecto(registro)
+      ) {
+        return "CORRECTO";
+      }
+
+      return registro[columna.campo];
     }
 
 
@@ -1312,7 +1409,7 @@
 
 
     function renderCelda(registro, columna) {
-      const valor = registro[columna.campo];
+      const valor = resultadoMostrado(registro, columna);
 
       if (columna.tipo === "booleano") {
         return renderBooleano(valor);
@@ -1341,6 +1438,86 @@
         correctos,
         errores
       };
+    }
+
+
+    function renderResumenGeneral() {
+      const contenedor =
+        document.getElementById("resumenGeneral");
+
+      if (!contenedor) {
+        return;
+      }
+
+      const filas = ["conductores", "vehiculos"]
+        .map(seccion => {
+          const registros = Array.isArray(datos[seccion])
+            ? datos[seccion]
+            : [];
+
+          const conteo = contarResultados(registros);
+          const nombre = seccion === "conductores"
+            ? "CONDUCTORES"
+            : "VEHÍCULOS";
+
+          return `
+            <tr>
+              <td class="resumen-seccion">${nombre}</td>
+              <td>${conteo.total}</td>
+              <td>
+                <span class="resumen-error-numero ${
+                  conteo.errores === 0
+                    ? "resumen-sin-errores"
+                    : ""
+                }">
+                  ${conteo.errores}
+                </span>
+              </td>
+              <td>
+                <button
+                  class="resumen-ver"
+                  type="button"
+                  data-ver-errores="${seccion}"
+                >
+                  VER ERRORES
+                </button>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
+
+      contenedor.innerHTML = `
+        <div class="resumen-general">
+          <div class="resumen-general-cabecera">
+            <h2>Resumen general de errores</h2>
+            <p>
+              Selecciona VER ERRORES para ir directamente al detalle.
+            </p>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Control</th>
+                <th>Total</th>
+                <th>Con errores</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>${filas}</tbody>
+          </table>
+        </div>
+      `;
+
+      contenedor
+        .querySelectorAll("[data-ver-errores]")
+        .forEach(boton => {
+          boton.addEventListener("click", () => {
+            cambiarSeccion(boton.dataset.verErrores);
+            abrirModalErrores();
+          });
+        });
     }
 
 
@@ -1873,10 +2050,11 @@
               : []
         };
 
-        ultimaActualizacion.textContent =
-          datos.actualizado || "Sin información";
+            ultimaActualizacion.textContent =
+              datos.actualizado || "Sin información";
 
-        renderDashboard();
+            renderResumenGeneral();
+            renderDashboard();
 
       } catch (error) {
         mostrarError(error);
