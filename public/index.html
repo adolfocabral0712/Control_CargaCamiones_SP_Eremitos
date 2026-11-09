@@ -2,1011 +2,811 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#173f32">
-
+  <meta name="theme-color" content="#C65312">
   <title>Control de Conductores y Vehículos</title>
 
   <style>
     :root {
-      --verde-950: #102d25;
-      --verde-900: #173f32;
-      --verde-800: #205540;
-      --verde-700: #2d7253;
-      --verde-600: #3a8a65;
-      --verde-100: #dff1e6;
-      --verde-50: #eff8f2;
+      --fas-charcoal:#1F1F1F;
+      --fas-orange:#C65312;
+      --fas-interaction:#E86F18;
+      --fas-light:#FFB86B;
+      --fas-orange-soft:#FFF4EA;
+      --fas-neutral-soft:#F8F6F4;
+      --fas-neutral:#F4F3F1;
+      --fas-muted:#6B6B6B;
 
-      --rojo-900: #8d1b1b;
-      --rojo-700: #bd2c2c;
-      --rojo-200: #f2bcbc;
-      --rojo-100: #fbdada;
-      --rojo-50: #fff0f0;
+      --rojo-900:#8d1b1b;
+      --rojo-700:#bd2c2c;
+      --rojo-200:#f2bcbc;
+      --rojo-100:#fbdada;
+      --rojo-50:#fff0f0;
 
-      --amarillo-700: #976a00;
-      --amarillo-100: #fff1bd;
+      --amarillo-700:#976a00;
+      --amarillo-100:#fff1bd;
 
-      --azul-700: #24618d;
-      --azul-100: #ddecf7;
+      --blanco:#FFFFFF;
+      --fondo:#F4F3F1;
+      --texto:#1F1F1F;
+      --texto-suave:#6B6B6B;
+      --borde:#E2DAD4;
 
-      --blanco: #ffffff;
-      --fondo: #eef3f0;
-      --texto: #17241e;
-      --texto-suave: #65736b;
-      --borde: #d5dfd9;
-
-      --sombra:
-        0 12px 32px rgba(21, 58, 44, 0.10);
-
-      --sombra-suave:
-        0 5px 18px rgba(21, 58, 44, 0.07);
+      --sombra:0 12px 32px rgba(31,31,31,.10);
+      --sombra-suave:0 5px 18px rgba(31,31,31,.07);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing:border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior:smooth; }
 
     body {
-      margin: 0;
-      min-width: 320px;
-      background:
-        linear-gradient(
-          180deg,
-          #e8f1ec 0,
-          var(--fondo) 250px
-        );
-      color: var(--texto);
-      font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+      margin:0;
+      min-width:320px;
+      background:linear-gradient(180deg,#F4F3F1 0,var(--fondo) 250px);
+      color:var(--texto);
+      font-family:Inter,"Segoe UI",Arial,sans-serif;
     }
 
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
+    button,input { font:inherit; }
+    button { -webkit-tap-highlight-color:transparent; }
 
     .encabezado {
-      padding:
-        24px
-        clamp(16px, 4vw, 42px);
-      background:
-        linear-gradient(
-          135deg,
-          var(--verde-950),
-          var(--verde-700)
-        );
-      color: var(--blanco);
-      box-shadow: var(--sombra);
+      padding:24px clamp(16px,4vw,42px);
+      background:linear-gradient(135deg,var(--fas-charcoal),var(--fas-interaction));
+      color:var(--blanco);
+      box-shadow:var(--sombra);
     }
 
     .encabezado-contenido {
-      display: flex;
-      width: min(1600px, 100%);
-      margin: 0 auto;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      display:flex;
+      width:min(1600px,100%);
+      margin:0 auto;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
 
     .encabezado h1 {
-      margin: 0;
-      font-size: clamp(1.35rem, 3vw, 2rem);
-      line-height: 1.15;
+      margin:0;
+      font-size:clamp(1.35rem,3vw,2rem);
+      line-height:1.15;
     }
 
     .encabezado p {
-      margin: 8px 0 0;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 0.92rem;
+      margin:8px 0 0;
+      color:rgba(255,255,255,.78);
+      font-size:.92rem;
     }
 
     .actualizacion {
-      flex: 0 0 auto;
-      min-width: 230px;
-      padding: 12px 15px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      text-align: center;
+      flex:0 0 auto;
+      min-width:230px;
+      padding:12px 15px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      text-align:center;
     }
 
     .actualizacion-etiqueta {
-      display: block;
-      margin-bottom: 5px;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      display:block;
+      margin-bottom:5px;
+      color:rgba(255,255,255,.72);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
     .actualizacion-valor {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 800;
+      display:block;
+      font-size:.9rem;
+      font-weight:800;
     }
 
     .contenedor {
-      width: min(1600px, calc(100% - 28px));
-      margin: 24px auto 40px;
+      width:min(1600px,calc(100% - 28px));
+      margin:24px auto 40px;
     }
 
     .resumen-general {
-      margin-bottom: 18px;
-      overflow: hidden;
-      border: 1px solid var(--borde);
-      border-radius: 15px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
+      margin-bottom:18px;
+      overflow:hidden;
+      border:1px solid var(--borde);
+      border-radius:15px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
     }
 
     .resumen-general-cabecera {
-      padding: 14px 17px;
-      border-bottom: 1px solid var(--borde);
-      background: #f8fbf9;
-      text-align: center;
+      padding:14px 17px;
+      border-bottom:1px solid var(--borde);
+      background:#F8F6F4;
+      text-align:center;
     }
 
     .resumen-general-cabecera h2 {
-      margin: 0;
-      color: var(--verde-950);
-      font-size: 1rem;
+      margin:0;
+      color:var(--fas-charcoal);
+      font-size:1rem;
     }
 
     .resumen-general-cabecera p {
-      margin: 5px 0 0;
-      color: var(--texto-suave);
-      font-size: 0.78rem;
+      margin:5px 0 0;
+      color:var(--texto-suave);
+      font-size:.78rem;
     }
 
     .pestanas {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 20px;
-      padding: 7px;
-      border: 1px solid var(--borde);
-      border-radius: 15px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-bottom:20px;
+      padding:7px;
+      border:1px solid var(--borde);
+      border-radius:15px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
     }
 
     .pestana {
-      min-height: 50px;
-      border: 0;
-      border-radius: 11px;
-      background: transparent;
-      color: var(--texto-suave);
-      font-weight: 900;
-      cursor: pointer;
+      min-height:50px;
+      border:0;
+      border-radius:11px;
+      background:transparent;
+      color:var(--texto-suave);
+      font-weight:900;
+      cursor:pointer;
     }
 
     .pestana:hover {
-      background: var(--verde-50);
-      color: var(--verde-800);
+      background:var(--fas-neutral-soft);
+      color:var(--fas-interaction);
     }
 
     .pestana.activa {
-      background:
-        linear-gradient(
-          135deg,
-          var(--verde-900),
-          var(--verde-700)
-        );
-      color: var(--blanco);
-      box-shadow:
-        0 7px 16px rgba(36, 105, 76, 0.22);
+      background:linear-gradient(135deg,var(--fas-orange),var(--fas-interaction));
+      color:var(--blanco);
+      box-shadow:0 7px 16px rgba(198,83,18,.22);
     }
 
     .seccion-titulo {
-      display: flex;
-      margin-bottom: 16px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      display:flex;
+      margin-bottom:16px;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
     .seccion-titulo h2 {
-      margin: 0;
-      color: var(--verde-950);
-      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      margin:0;
+      color:var(--fas-charcoal);
+      font-size:clamp(1.15rem,2.4vw,1.55rem);
     }
 
     .seccion-titulo p {
-      margin: 5px 0 0;
-      color: var(--texto-suave);
-      font-size: 0.88rem;
+      margin:5px 0 0;
+      color:var(--texto-suave);
+      font-size:.88rem;
     }
 
     .boton-recargar {
-      min-height: 42px;
-      padding: 0 16px;
-      border: 1px solid var(--verde-700);
-      border-radius: 10px;
-      background: var(--blanco);
-      color: var(--verde-800);
-      font-weight: 900;
-      cursor: pointer;
+      min-height:42px;
+      padding:0 16px;
+      border:1px solid var(--fas-interaction);
+      border-radius:10px;
+      background:var(--blanco);
+      color:var(--fas-interaction);
+      font-weight:900;
+      cursor:pointer;
     }
 
-    .boton-recargar:hover {
-      background: var(--verde-50);
-    }
+    .boton-recargar:hover { background:var(--fas-neutral-soft); }
 
     .kpis {
-      display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-bottom:18px;
     }
 
     .kpi {
-      width: 100%;
-      min-height: 125px;
-      padding: 18px;
-      border: 1px solid var(--borde);
-      border-radius: 16px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
-      text-align: center;
-      cursor: pointer;
+      width:100%;
+      min-height:125px;
+      padding:18px;
+      border:1px solid var(--borde);
+      border-radius:16px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
+      text-align:center;
+      cursor:pointer;
     }
 
     .kpi:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--sombra);
+      transform:translateY(-2px);
+      box-shadow:var(--sombra);
     }
 
     .kpi-cabecera {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:8px;
     }
 
     .kpi-titulo {
-      color: var(--texto-suave);
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.075em;
-      text-transform: uppercase;
+      color:var(--texto-suave);
+      font-size:.76rem;
+      font-weight:900;
+      letter-spacing:.075em;
+      text-transform:uppercase;
     }
 
     .kpi-icono {
-      display: grid;
-      width: 34px;
-      height: 34px;
-      place-items: center;
-      border-radius: 50%;
-      font-size: 1rem;
-      font-weight: 900;
+      display:grid;
+      width:34px;
+      height:34px;
+      place-items:center;
+      border-radius:50%;
+      font-size:1rem;
+      font-weight:900;
     }
 
     .kpi-valor {
-      display: block;
-      margin-top: 10px;
-      color: var(--texto);
-      font-size: clamp(1.8rem, 4vw, 2.45rem);
-      font-weight: 900;
-      line-height: 1;
+      display:block;
+      margin-top:10px;
+      color:var(--texto);
+      font-size:clamp(1.8rem,4vw,2.45rem);
+      font-weight:900;
+      line-height:1;
     }
 
     .kpi-detalle {
-      display: block;
-      margin-top: 8px;
-      color: var(--texto-suave);
-      font-size: 0.78rem;
+      display:block;
+      margin-top:8px;
+      color:var(--texto-suave);
+      font-size:.78rem;
     }
 
     .kpi-total .kpi-icono {
-      background: var(--azul-100);
-      color: var(--azul-700);
+      background:var(--fas-neutral);
+      color:var(--fas-muted);
     }
 
-    .kpi-correctos {
-      border-color: #b9d9c5;
-    }
+    .kpi-correctos { border-color:var(--fas-light); }
 
     .kpi-correctos .kpi-icono {
-      background: var(--verde-100);
-      color: var(--verde-700);
+      background:var(--fas-orange-soft);
+      color:var(--fas-interaction);
     }
 
-    .kpi-correctos .kpi-valor {
-      color: var(--verde-700);
-    }
+    .kpi-correctos .kpi-valor { color:var(--fas-interaction); }
 
     .kpi-errores {
-      border-color: var(--rojo-200);
-      background:
-        linear-gradient(
-          135deg,
-          var(--blanco),
-          var(--rojo-50)
-        );
+      border-color:var(--rojo-200);
+      background:linear-gradient(135deg,var(--blanco),var(--rojo-50));
     }
 
     .kpi-errores .kpi-icono {
-      background: var(--rojo-100);
-      color: var(--rojo-700);
+      background:var(--rojo-100);
+      color:var(--rojo-700);
     }
 
-    .kpi-errores .kpi-valor {
-      color: var(--rojo-700);
-    }
+    .kpi-errores .kpi-valor { color:var(--rojo-700); }
 
     .herramientas {
-      display: flex;
-      margin-bottom: 14px;
-      padding: 14px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      border: 1px solid var(--borde);
-      border-radius: 14px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
+      display:flex;
+      margin-bottom:14px;
+      padding:14px;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border:1px solid var(--borde);
+      border-radius:14px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
     }
 
     .buscador-contenedor {
-      position: relative;
-      flex: 1 1 520px;
-      max-width: 680px;
+      position:relative;
+      flex:1 1 520px;
+      max-width:680px;
     }
 
     .buscador-icono {
-      position: absolute;
-      top: 50%;
-      left: 14px;
-      transform: translateY(-50%);
-      color: var(--texto-suave);
-      pointer-events: none;
+      position:absolute;
+      top:50%;
+      left:14px;
+      transform:translateY(-50%);
+      color:var(--texto-suave);
+      pointer-events:none;
     }
 
     .buscador {
-      width: 100%;
-      height: 44px;
-      padding: 0 15px 0 42px;
-      border: 1px solid var(--borde);
-      border-radius: 11px;
-      outline: none;
-      color: var(--texto);
-      background: #fbfdfc;
+      width:100%;
+      height:44px;
+      padding:0 15px 0 42px;
+      border:1px solid var(--borde);
+      border-radius:11px;
+      outline:none;
+      color:var(--texto);
+      background:#FFFFFF;
     }
 
     .buscador:focus {
-      border-color: var(--verde-600);
-      box-shadow:
-        0 0 0 3px rgba(58, 138, 101, 0.13);
+      border-color:var(--fas-interaction);
+      box-shadow:0 0 0 3px rgba(232,111,24,.13);
     }
 
     .filtros {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:8px;
     }
 
     .filtro {
-      min-height: 40px;
-      padding: 0 13px;
-      border: 1px solid var(--borde);
-      border-radius: 10px;
-      background: var(--blanco);
-      color: var(--texto-suave);
-      font-size: 0.82rem;
-      font-weight: 900;
-      cursor: pointer;
+      min-height:40px;
+      padding:0 13px;
+      border:1px solid var(--borde);
+      border-radius:10px;
+      background:var(--blanco);
+      color:var(--texto-suave);
+      font-size:.82rem;
+      font-weight:900;
+      cursor:pointer;
     }
 
     .filtro.activo {
-      border-color: var(--verde-700);
-      background: var(--verde-700);
-      color: var(--blanco);
+      border-color:var(--fas-interaction);
+      background:var(--fas-interaction);
+      color:var(--blanco);
     }
 
     .filtro-error.activo {
-      border-color: var(--rojo-700);
-      background: var(--rojo-700);
+      border-color:var(--rojo-700);
+      background:var(--rojo-700);
     }
 
     .tabla-panel {
-      overflow: hidden;
-      border: 1px solid var(--borde);
-      border-radius: 15px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
+      overflow:hidden;
+      border:1px solid var(--borde);
+      border-radius:15px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
     }
 
     .tabla-informacion {
-      display: flex;
-      min-height: 47px;
-      padding: 10px 15px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid var(--borde);
-      background: #f8fbf9;
-      color: var(--texto-suave);
-      font-size: 0.79rem;
+      display:flex;
+      min-height:47px;
+      padding:10px 15px;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      border-bottom:1px solid var(--borde);
+      background:#F8F6F4;
+      color:var(--texto-suave);
+      font-size:.79rem;
     }
 
     .tabla-leyenda {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
     .leyenda-roja {
-      width: 13px;
-      height: 13px;
-      border: 1px solid var(--rojo-200);
-      border-radius: 4px;
-      background: var(--rojo-100);
+      width:13px;
+      height:13px;
+      border:1px solid var(--rojo-200);
+      border-radius:4px;
+      background:var(--rojo-100);
     }
 
     .tabla-scroll {
-      width: 100%;
-      max-height: calc(100vh - 300px);
-      min-height: 260px;
-      overflow: auto;
-      overscroll-behavior-x: contain;
-      -webkit-overflow-scrolling: touch;
+      width:100%;
+      max-height:calc(100vh - 300px);
+      min-height:260px;
+      overflow:auto;
+      overscroll-behavior-x:contain;
+      -webkit-overflow-scrolling:touch;
     }
 
     table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: 0.78rem;
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      font-size:.78rem;
     }
 
-    .tabla-conductores {
-      min-width: 900px;
+    .tabla-conductores { min-width:900px; }
+    .tabla-vehiculos { min-width:1200px; }
+
+    th,td {
+      padding:11px 10px;
+      border-right:1px solid #E2DAD4;
+      border-bottom:1px solid #E2DAD4;
+      text-align:center;
+      vertical-align:middle;
+      white-space:nowrap;
     }
 
-    .tabla-vehiculos {
-      min-width: 1200px;
-    }
-
-    th,
-    td {
-      padding: 11px 10px;
-      border-right: 1px solid #e5ebeebe7;
-      border-bottom: 1px solid #e5ebe7;
-      text-align: center;
-      vertical-align: middle;
-      white-space: nowrap;
-    }
-
-    th:last-child,
-    td:last-child {
-      border-right: 0;
-    }
+    th:last-child,td:last-child { border-right:0; }
 
     thead th {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      min-width: 92px;
-      max-width: 150px;
-      background: var(--verde-900);
-      color: var(--blanco);
-      font-size: 0.71rem;
-      font-weight: 900;
-      line-height: 1.25;
-      letter-spacing: 0.035em;
-      text-transform: uppercase;
-      white-space: normal;
-      overflow-wrap: anywhere;
+      position:sticky;
+      top:0;
+      z-index:5;
+      min-width:92px;
+      max-width:150px;
+      background:var(--fas-orange);
+      color:var(--blanco);
+      font-size:.71rem;
+      font-weight:900;
+      line-height:1.25;
+      letter-spacing:.035em;
+      text-transform:uppercase;
+      white-space:normal;
+      overflow-wrap:anywhere;
     }
 
-    .encabezado-linea {
-      display: block;
-    }
+    .encabezado-linea { display:block; }
 
-    tbody tr {
-      background: var(--blanco);
-    }
-
-    tbody tr:hover {
-      background: var(--verde-50);
-    }
-
-    tbody tr.fila-error {
-      background: var(--rojo-50);
-    }
-
-    tbody tr.fila-error:nth-child(even) {
-      background: #fde6e6;
-    }
-
-    tbody tr.fila-error:hover {
-      background: var(--rojo-100);
-    }
-
-    tbody tr:last-child td {
-      border-bottom: 0;
-    }
+    tbody tr { background:var(--blanco); }
+    tbody tr:hover { background:var(--fas-neutral-soft); }
+    tbody tr.fila-error { background:var(--rojo-50); }
+    tbody tr.fila-error:nth-child(even) { background:#fde6e6; }
+    tbody tr.fila-error:hover { background:var(--rojo-100); }
+    tbody tr:last-child td { border-bottom:0; }
 
     .celda-principal {
-      color: var(--verde-950);
-      font-weight: 900;
+      color:var(--fas-charcoal);
+      font-weight:900;
     }
 
     .estado {
-      display: inline-flex;
-      min-width: 78px;
-      min-height: 27px;
-      padding: 4px 9px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      font-size: 0.69rem;
-      font-weight: 900;
-      line-height: 1.1;
+      display:inline-flex;
+      min-width:78px;
+      min-height:27px;
+      padding:4px 9px;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      font-size:.69rem;
+      font-weight:900;
+      line-height:1.1;
     }
 
     .estado-ok {
-      background: var(--verde-100);
-      color: var(--verde-800);
+      background:var(--fas-orange-soft);
+      color:var(--fas-interaction);
     }
 
     .estado-error {
-      background: var(--rojo-100);
-      color: var(--rojo-900);
+      background:var(--rojo-100);
+      color:var(--rojo-900);
     }
 
     .estado-aviso {
-      background: var(--amarillo-100);
-      color: var(--amarillo-700);
+      background:var(--amarillo-100);
+      color:var(--amarillo-700);
     }
 
     .sin-resultados {
-      padding: 52px 20px;
-      color: var(--texto-suave);
-      text-align: center;
+      padding:52px 20px;
+      color:var(--texto-suave);
+      text-align:center;
     }
 
     .cargando {
-      display: grid;
-      min-height: 360px;
-      place-items: center;
-      border: 1px solid var(--borde);
-      border-radius: 15px;
-      background: var(--blanco);
-      color: var(--texto-suave);
-      box-shadow: var(--sombra-suave);
+      display:grid;
+      min-height:360px;
+      place-items:center;
+      border:1px solid var(--borde);
+      border-radius:15px;
+      background:var(--blanco);
+      color:var(--texto-suave);
+      box-shadow:var(--sombra-suave);
     }
 
-    .cargando-contenido {
-      text-align: center;
-    }
+    .cargando-contenido { text-align:center; }
 
     .spinner {
-      width: 42px;
-      height: 42px;
-      margin: 0 auto 14px;
-      border: 4px solid var(--verde-100);
-      border-top-color: var(--verde-700);
-      border-radius: 50%;
-      animation: girar 800ms linear infinite;
+      width:42px;
+      height:42px;
+      margin:0 auto 14px;
+      border:4px solid var(--fas-orange-soft);
+      border-top-color:var(--fas-interaction);
+      border-radius:50%;
+      animation:girar 800ms linear infinite;
     }
 
-    @keyframes girar {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    @keyframes girar { to { transform:rotate(360deg); } }
 
     .mensaje-error {
-      padding: 28px;
-      border: 1px solid var(--rojo-200);
-      border-radius: 15px;
-      background: var(--rojo-50);
-      color: var(--rojo-900);
-      text-align: center;
-      box-shadow: var(--sombra-suave);
+      padding:28px;
+      border:1px solid var(--rojo-200);
+      border-radius:15px;
+      background:var(--rojo-50);
+      color:var(--rojo-900);
+      text-align:center;
+      box-shadow:var(--sombra-suave);
     }
 
     .modal-fondo {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      padding: 18px;
-      align-items: center;
-      justify-content: center;
-      background: rgba(8, 26, 20, 0.68);
-      backdrop-filter: blur(3px);
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:none;
+      padding:18px;
+      align-items:center;
+      justify-content:center;
+      background:rgba(31,31,31,.68);
+      backdrop-filter:blur(3px);
     }
 
-    .modal-fondo.visible {
-      display: flex;
-    }
+    .modal-fondo.visible { display:flex; }
 
     .modal {
-      display: flex;
-      width: min(1050px, 100%);
-      max-height: min(780px, calc(100vh - 36px));
-      flex-direction: column;
-      overflow: hidden;
-      border-radius: 18px;
-      background: var(--blanco);
-      box-shadow:
-        0 28px 70px rgba(0, 0, 0, 0.30);
+      display:flex;
+      width:min(1050px,100%);
+      max-height:min(780px,calc(100vh - 36px));
+      flex-direction:column;
+      overflow:hidden;
+      border-radius:18px;
+      background:var(--blanco);
+      box-shadow:0 28px 70px rgba(0,0,0,.30);
     }
 
     .modal-cabecera {
-      display: flex;
-      padding: 18px 20px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      background:
-        linear-gradient(
-          135deg,
-          var(--verde-950),
-          var(--verde-700)
-        );
-      color: var(--blanco);
+      display:flex;
+      padding:18px 20px;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      background:linear-gradient(135deg,var(--fas-charcoal),var(--fas-interaction));
+      color:var(--blanco);
     }
 
-    .modal-cabecera h2 {
-      margin: 0;
-      font-size: 1.15rem;
-    }
+    .modal-cabecera h2 { margin:0; font-size:1.15rem; }
 
     .modal-cabecera p {
-      margin: 5px 0 0;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.8rem;
+      margin:5px 0 0;
+      color:rgba(255,255,255,.72);
+      font-size:.8rem;
     }
 
     .modal-cerrar {
-      display: grid;
-      flex: 0 0 auto;
-      width: 39px;
-      height: 39px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.10);
-      color: var(--blanco);
-      font-size: 1.35rem;
-      cursor: pointer;
+      display:grid;
+      flex:0 0 auto;
+      width:39px;
+      height:39px;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:50%;
+      background:rgba(255,255,255,.10);
+      color:var(--blanco);
+      font-size:1.35rem;
+      cursor:pointer;
     }
 
     .modal-cuerpo {
-      overflow: auto;
-      padding: 16px;
-      background: var(--fondo);
+      overflow:auto;
+      padding:16px;
+      background:var(--fondo);
     }
 
-    .lista-errores {
-      display: grid;
-      gap: 10px;
-    }
+    .lista-errores { display:grid; gap:10px; }
 
     .error-item {
-      display: grid;
-      grid-template-columns:
-        minmax(110px, 0.7fr)
-        minmax(190px, 1.2fr)
-        minmax(190px, 1.4fr)
-        minmax(220px, 2fr);
-      padding: 13px 14px;
-      align-items: center;
-      gap: 12px;
-      border: 1px solid var(--rojo-200);
-      border-left: 5px solid var(--rojo-700);
-      border-radius: 12px;
-      background: var(--blanco);
-      box-shadow: var(--sombra-suave);
+      display:grid;
+      grid-template-columns:minmax(110px,.7fr) minmax(190px,1.2fr) minmax(190px,1.4fr) minmax(220px,2fr);
+      padding:13px 14px;
+      align-items:center;
+      gap:12px;
+      border:1px solid var(--rojo-200);
+      border-left:5px solid var(--rojo-700);
+      border-radius:12px;
+      background:var(--blanco);
+      box-shadow:var(--sombra-suave);
     }
 
-    .error-dato {
-      min-width: 0;
-    }
+    .error-dato { min-width:0; }
 
     .error-etiqueta {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--texto-suave);
-      font-size: 0.65rem;
-      font-weight: 900;
-      letter-spacing: 0.055em;
-      text-transform: uppercase;
+      display:block;
+      margin-bottom:4px;
+      color:var(--texto-suave);
+      font-size:.65rem;
+      font-weight:900;
+      letter-spacing:.055em;
+      text-transform:uppercase;
     }
 
     .error-valor {
-      display: block;
-      overflow: hidden;
-      color: var(--texto);
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      display:block;
+      overflow:hidden;
+      color:var(--texto);
+      font-size:.82rem;
+      font-weight:800;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
 
     .error-resultado .error-valor {
-      color: var(--rojo-900);
-      white-space: normal;
+      color:var(--rojo-900);
+      white-space:normal;
     }
 
     .modal-vacio {
-      padding: 45px 20px;
-      color: var(--verde-800);
-      text-align: center;
+      padding:45px 20px;
+      color:var(--fas-interaction);
+      text-align:center;
     }
 
-    @media (max-width: 900px) {
-      .encabezado-contenido,
-      .seccion-titulo,
-      .herramientas {
-        align-items: stretch;
-        flex-direction: column;
+    @media (max-width:900px) {
+      .encabezado-contenido,.seccion-titulo,.herramientas {
+        align-items:stretch;
+        flex-direction:column;
       }
-    
-      .actualizacion,
-      .boton-recargar {
-        width: 100%;
-        min-width: 0;
-        max-width: none;
+
+      .actualizacion,.boton-recargar {
+        width:100%;
+        min-width:0;
+        max-width:none;
       }
-    
+
       .buscador-contenedor {
-        width: 100%;
-        max-width: none;
-        flex: 0 0 auto;
+        width:100%;
+        max-width:none;
+        flex:0 0 auto;
       }
-    
+
       .buscador {
-        width: 100%;
-        height: 44px;
-        text-align: left;
+        width:100%;
+        height:44px;
+        text-align:left;
       }
-    
+
       .filtros {
-        width: 100%;
-        justify-content: stretch;
+        width:100%;
+        justify-content:stretch;
       }
-    
-      .filtro {
-        flex: 1 1 100px;
-      }
-    
+
+      .filtro { flex:1 1 100px; }
+
       .error-item {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
     }
 
-    @media (max-width: 800px) {
-      .encabezado {
-        padding: 18px 15px;
-      }
+    @media (max-width:800px) {
+      .encabezado { padding:18px 15px; }
 
       .contenedor {
-        width: calc(100% - 18px);
-        margin-top: 14px;
+        width:calc(100% - 18px);
+        margin-top:14px;
       }
 
-      .actualizacion {
-        text-align: center;
-      }
-
-      .resumen-general {
-        overflow: visible;
-      }
+      .actualizacion { text-align:center; }
+      .resumen-general { overflow:visible; }
 
       .resumen-general table,
       .resumen-general tbody,
       .resumen-general tr,
       .resumen-general td {
-        display: block;
-        width: 100%;
+        display:block;
+        width:100%;
       }
 
-      .resumen-general thead {
-        display: none;
-      }
-
-      .resumen-general tbody {
-        padding: 10px;
-      }
+      .resumen-general thead { display:none; }
+      .resumen-general tbody { padding:10px; }
 
       .resumen-general tbody tr {
-        display: grid;
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-        gap: 9px;
-        margin-bottom: 10px;
-        padding: 13px;
-        border: 1px solid var(--borde);
-        border-radius: 12px;
-        background: var(--blanco);
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:9px;
+        margin-bottom:10px;
+        padding:13px;
+        border:1px solid var(--borde);
+        border-radius:12px;
+        background:var(--blanco);
       }
 
-      .resumen-general tbody tr:last-child {
-        margin-bottom: 0;
-      }
+      .resumen-general tbody tr:last-child { margin-bottom:0; }
 
       .resumen-general tbody td {
-        padding: 0;
-        border: 0;
-        text-align: center;
-        white-space: normal;
+        padding:0;
+        border:0;
+        text-align:center;
+        white-space:normal;
       }
 
       .resumen-general tbody td:nth-child(1),
       .resumen-general tbody td:nth-child(4) {
-        grid-column: 1 / -1;
+        grid-column:1 / -1;
       }
 
-      .resumen-general tbody td:nth-child(2)::before {
-        content: "TOTAL";
-      }
-
-      .resumen-general tbody td:nth-child(3)::before {
-        content: "CON ERRORES";
-      }
+      .resumen-general tbody td:nth-child(2)::before { content:"TOTAL"; }
+      .resumen-general tbody td:nth-child(3)::before { content:"CON ERRORES"; }
 
       .resumen-general tbody td:nth-child(2)::before,
       .resumen-general tbody td:nth-child(3)::before {
-        display: block;
-        margin-bottom: 4px;
-        color: var(--texto-suave);
-        font-size: 0.62rem;
-        font-weight: 900;
-        letter-spacing: 0.05em;
+        display:block;
+        margin-bottom:4px;
+        color:var(--texto-suave);
+        font-size:.62rem;
+        font-weight:900;
+        letter-spacing:.05em;
       }
 
-      .resumen-ver {
-        width: 100%;
-        min-height: 40px;
-      }
-
-      .pestanas {
-        gap: 6px;
-      }
-
-      .pestana {
-        min-height: 46px;
-        font-size: 0.8rem;
-      }
-
-      .kpis {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .kpi {
-        min-height: 110px;
-      }
+      .resumen-ver { width:100%; min-height:40px; }
+      .pestanas { gap:6px; }
+      .pestana { min-height:46px; font-size:.8rem; }
+      .kpis { grid-template-columns:1fr; gap:10px; }
+      .kpi { min-height:110px; }
 
       .tabla-informacion {
-        align-items: flex-start;
-        flex-direction: column;
+        align-items:flex-start;
+        flex-direction:column;
       }
 
-      .tabla-scroll {
-        max-height: calc(100vh - 220px);
-      }
+      .tabla-scroll { max-height:calc(100vh - 220px); }
+      .tabla-conductores { min-width:760px; }
+      .tabla-vehiculos { min-width:1000px; }
 
-      .tabla-conductores {
-        min-width: 760px;
-      }
-
-      .tabla-vehiculos {
-        min-width: 1000px;
-      }
-
-      th,
-      td {
-        padding: 9px 6px;
-      }
+      th,td { padding:9px 6px; }
 
       thead th {
-        min-width: 74px;
-        max-width: 110px;
-        font-size: 0.62rem;
+        min-width:74px;
+        max-width:110px;
+        font-size:.62rem;
       }
 
-      .error-item {
-        grid-template-columns: 1fr;
-      }
-
-      .error-valor {
-        white-space: normal;
-      }
+      .error-item { grid-template-columns:1fr; }
+      .error-valor { white-space:normal; }
     }
   </style>
 </head>
 
 <body>
-
   <header class="encabezado">
     <div class="encabezado-contenido">
-
       <div>
         <h1>Control de Conductores y Vehículos</h1>
-
-        <p>
-          Validación de existencia, actividad y empresa registrada
-        </p>
+        <p>Validación de existencia, actividad y empresa registrada</p>
       </div>
 
       <div class="actualizacion">
-        <span class="actualizacion-etiqueta">
-          Última actualización
-        </span>
-
-        <span
-          class="actualizacion-valor"
-          id="ultimaActualizacion"
-        >
-          Cargando...
-        </span>
+        <span class="actualizacion-etiqueta">Última actualización</span>
+        <span class="actualizacion-valor" id="ultimaActualizacion">Cargando...</span>
       </div>
-
     </div>
   </header>
 
   <main class="contenedor">
-
     <section id="resumenGeneral"></section>
 
     <nav class="pestanas" aria-label="Secciones">
-
-      <button
-        class="pestana activa"
-        type="button"
-        data-seccion="conductores"
-      >
+      <button class="pestana activa" type="button" data-seccion="conductores">
         CONDUCTORES
       </button>
-
-      <button
-        class="pestana"
-        type="button"
-        data-seccion="vehiculos"
-      >
+      <button class="pestana" type="button" data-seccion="vehiculos">
         VEHÍCULOS
       </button>
-
     </nav>
 
     <div id="contenidoPrincipal">
-
       <div class="cargando">
         <div class="cargando-contenido">
           <div class="spinner"></div>
           <div>Cargando información...</div>
         </div>
       </div>
-
     </div>
-
   </main>
 
   <div
@@ -1017,33 +817,18 @@
     aria-labelledby="modalTitulo"
   >
     <div class="modal">
-
       <div class="modal-cabecera">
-
         <div>
-          <h2 id="modalTitulo">
-            Registros observados
-          </h2>
-
+          <h2 id="modalTitulo">Registros observados</h2>
           <p id="modalSubtitulo"></p>
         </div>
 
-        <button
-          class="modal-cerrar"
-          id="modalCerrar"
-          type="button"
-          aria-label="Cerrar"
-        >
+        <button class="modal-cerrar" id="modalCerrar" type="button" aria-label="Cerrar">
           ×
         </button>
-
       </div>
 
-      <div
-        class="modal-cuerpo"
-        id="modalCuerpo"
-      ></div>
-
+      <div class="modal-cuerpo" id="modalCuerpo"></div>
     </div>
   </div>
 
@@ -1055,54 +840,18 @@
     const configuracion = {
       conductores: {
         titulo: "Control de conductores",
-
-        descripcion:
-          "Validación en SP, eRemito y comparación de empresa.",
-
+        descripcion: "Validación en SP, eRemito y comparación de empresa.",
         columnas: [
-          {
-            campo: "matricula",
-            titulo: "Matrícula",
-            principal: true
-          },
-          {
-            campo: "cedula_identidad",
-            titulo: "Cédula"
-          },
-          {
-            campo: "chofer",
-            titulo: "Chofer"
-          },
-          {
-            campo: "empresa",
-            titulo: "Empresa hoy"
-          },
-          {
-            campo: "contratista_eremito",
-            titulo: "Empresa eRemito"
-          },
-          {
-            campo: "estado_sp",
-            titulo: "Estado SP",
-            tipo: "estado"
-          },
-          {
-            campo: "estado_eremito",
-            titulo: "Estado eRemito",
-            tipo: "estado"
-          },
-          {
-            campo: "comparacion_empresa",
-            titulo: "Comparación empresa",
-            tipo: "estado"
-          },
-          {
-            campo: "resultado_general",
-            titulo: "Resultado",
-            tipo: "estado"
-          }
+          { campo: "matricula", titulo: "Matrícula", principal: true },
+          { campo: "cedula_identidad", titulo: "Cédula" },
+          { campo: "chofer", titulo: "Chofer" },
+          { campo: "empresa", titulo: "Empresa hoy" },
+          { campo: "contratista_eremito", titulo: "Empresa eRemito" },
+          { campo: "estado_sp", titulo: "Estado SP", tipo: "estado" },
+          { campo: "estado_eremito", titulo: "Estado eRemito", tipo: "estado" },
+          { campo: "comparacion_empresa", titulo: "Comparación empresa", tipo: "estado" },
+          { campo: "resultado_general", titulo: "Resultado", tipo: "estado" }
         ],
-
         modal: {
           identificador: "cedula_identidad",
           identificadorTitulo: "Cédula",
@@ -1113,74 +862,22 @@
 
       vehiculos: {
         titulo: "Control de vehículos",
-
-        descripcion:
-          "Control de camiones en SP y eRemito, y acoplados en SP.",
-
+        descripcion: "Control de camiones en SP y eRemito, y acoplados en SP.",
         columnas: [
-          {
-            campo: "matricula",
-            titulo: "Camión",
-            principal: true
-          },
-          {
-            campo: "acoplado",
-            titulo: "Acoplado",
-            principal: true
-          },
-          {
-            campo: "empresa",
-            titulo: "Empresa hoy"
-          },
-          {
-            campo: "empresa_camion_sp",
-            titulo: "Empresa camión SP"
-          },
-          {
-            campo: "empresa_camion_eremito",
-            titulo: "Empresa camión eRemito"
-          },
-          {
-            campo: "empresa_acoplado_sp",
-            titulo: "Empresa acoplado SP"
-          },
-          {
-            campo: "estado_camion_sp",
-            titulo: "Camión estado SP",
-            tipo: "estado"
-          },
-          {
-            campo: "comparacion_empresa_camion_sp",
-            titulo: "Comparación camión SP",
-            tipo: "estado"
-          },
-          {
-            campo: "estado_camion_eremito",
-            titulo: "Camión estado eRemito",
-            tipo: "estado"
-          },
-          {
-            campo: "comparacion_empresa_camion_eremito",
-            titulo: "Comparación camión eRemito",
-            tipo: "estado"
-          },
-          {
-            campo: "estado_acoplado_sp",
-            titulo: "Acoplado estado SP",
-            tipo: "estado"
-          },
-          {
-            campo: "comparacion_empresa_acoplado_sp",
-            titulo: "Comparación acoplado SP",
-            tipo: "estado"
-          },
-          {
-            campo: "resultado_general",
-            titulo: "Resultado",
-            tipo: "estado"
-          }
+          { campo: "matricula", titulo: "Camión", principal: true },
+          { campo: "acoplado", titulo: "Acoplado", principal: true },
+          { campo: "empresa", titulo: "Empresa hoy" },
+          { campo: "empresa_camion_sp", titulo: "Empresa camión SP" },
+          { campo: "empresa_camion_eremito", titulo: "Empresa camión eRemito" },
+          { campo: "empresa_acoplado_sp", titulo: "Empresa acoplado SP" },
+          { campo: "estado_camion_sp", titulo: "Camión estado SP", tipo: "estado" },
+          { campo: "comparacion_empresa_camion_sp", titulo: "Comparación camión SP", tipo: "estado" },
+          { campo: "estado_camion_eremito", titulo: "Camión estado eRemito", tipo: "estado" },
+          { campo: "comparacion_empresa_camion_eremito", titulo: "Comparación camión eRemito", tipo: "estado" },
+          { campo: "estado_acoplado_sp", titulo: "Acoplado estado SP", tipo: "estado" },
+          { campo: "comparacion_empresa_acoplado_sp", titulo: "Comparación acoplado SP", tipo: "estado" },
+          { campo: "resultado_general", titulo: "Resultado", tipo: "estado" }
         ],
-
         modal: {
           identificador: "matricula",
           identificadorTitulo: "Camión",
@@ -1223,11 +920,7 @@
 
 
     function textoSeguro(valor) {
-      if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-      ) {
+      if (valor === null || valor === undefined || valor === "") {
         return "";
       }
 
@@ -1265,15 +958,7 @@
         return texto || "Sin información";
       }
 
-      const [
-        ,
-        anio,
-        mes,
-        dia,
-        hora,
-        minuto
-      ] = coincidencia;
-
+      const [, anio, mes, dia, hora, minuto] = coincidencia;
       return `${dia}/${mes}/${anio} ${hora}:${minuto}`;
     }
 
@@ -1290,8 +975,7 @@
         normalizarTexto(registro.empresa);
 
       return (
-        resultado ===
-          "revisar empresa del acoplado en sp" &&
+        resultado === "revisar empresa del acoplado en sp" &&
         (
           empresa.includes("julcat") ||
           empresa.includes("jucajo")
@@ -1302,9 +986,7 @@
 
     function esCorrecto(registro) {
       return (
-        normalizarTexto(
-          registro.resultado_general
-        ) === "correcto" ||
+        normalizarTexto(registro.resultado_general) === "correcto" ||
         esExcepcionJulcatJucajo(registro)
       );
     }
@@ -1333,19 +1015,13 @@
 
     function ordenarPorEmpresa(registros) {
       return [...registros].sort((a, b) => {
-        const empresaA =
-          textoSeguro(a.empresa).trim();
-
-        const empresaB =
-          textoSeguro(b.empresa).trim();
+        const empresaA = textoSeguro(a.empresa).trim();
+        const empresaB = textoSeguro(b.empresa).trim();
 
         return empresaA.localeCompare(
           empresaB,
           "es",
-          {
-            sensitivity: "base",
-            numeric: true
-          }
+          { sensitivity: "base", numeric: true }
         );
       });
     }
@@ -1353,35 +1029,26 @@
 
     function obtenerRegistrosFiltrados() {
       let registros =
-        ordenarPorEmpresa(
-          obtenerRegistrosActuales()
-        );
+        ordenarPorEmpresa(obtenerRegistrosActuales());
 
       if (filtroActual === "correctos") {
-        registros =
-          registros.filter(esCorrecto);
+        registros = registros.filter(esCorrecto);
       }
 
       if (filtroActual === "errores") {
-        registros =
-          registros.filter(
-            registro => !esCorrecto(registro)
-          );
+        registros = registros.filter(
+          registro => !esCorrecto(registro)
+        );
       }
 
-      const busqueda =
-        normalizarTexto(busquedaActual);
+      const busqueda = normalizarTexto(busquedaActual);
 
       if (busqueda) {
-        registros =
-          registros.filter(registro => {
-            return Object
-              .values(registro)
-              .some(valor => {
-                return normalizarTexto(valor)
-                  .includes(busqueda);
-              });
-          });
+        registros = registros.filter(registro => {
+          return Object
+            .values(registro)
+            .some(valor => normalizarTexto(valor).includes(busqueda));
+        });
       }
 
       return registros;
@@ -1410,19 +1077,11 @@
         "false"
       ];
 
-      if (
-        valoresCorrectos.some(
-          estado => texto === estado
-        )
-      ) {
+      if (valoresCorrectos.some(estado => texto === estado)) {
         return "estado-ok";
       }
 
-      if (
-        valoresError.some(
-          estado => texto.includes(estado)
-        )
-      ) {
+      if (valoresError.some(estado => texto.includes(estado))) {
         return "estado-error";
       }
 
@@ -1431,12 +1090,10 @@
 
 
     function renderCelda(registro, columna) {
-      const valor =
-        resultadoMostrado(registro, columna);
+      const valor = resultadoMostrado(registro, columna);
 
       if (columna.tipo === "estado") {
-        const texto =
-          textoSeguro(valor) || "SIN DATOS";
+        const texto = textoSeguro(valor) || "SIN DATOS";
 
         return `
           <span class="estado ${claseEstado(texto)}">
@@ -1450,27 +1107,20 @@
 
 
     function renderTituloEncabezado(titulo) {
-      const texto =
-        textoSeguro(titulo).trim();
-
-      const partes =
-        texto.split(/\s+/);
+      const texto = textoSeguro(titulo).trim();
+      const partes = texto.split(/\s+/);
 
       if (partes.length <= 1) {
         return escaparHtml(texto);
       }
 
-      const primeraPalabra =
-        partes.shift();
-
-      const restoTitulo =
-        partes.join(" ");
+      const primeraPalabra = partes.shift();
+      const restoTitulo = partes.join(" ");
 
       return `
         <span class="encabezado-linea">
           ${escaparHtml(primeraPalabra)}
         </span>
-
         <span class="encabezado-linea">
           ${escaparHtml(restoTitulo)}
         </span>
@@ -1485,11 +1135,8 @@
         seccionActual = seccion;
       }
 
-      const correctos =
-        registros.filter(esCorrecto).length;
-
-      const errores =
-        registros.length - correctos;
+      const correctos = registros.filter(esCorrecto).length;
+      const errores = registros.length - correctos;
 
       seccionActual = seccionAnterior;
 
@@ -1503,79 +1150,51 @@
 
     function renderResumenGeneral() {
       const contenedor =
-        document.getElementById(
-          "resumenGeneral"
-        );
+        document.getElementById("resumenGeneral");
 
-      const filas =
-        ["conductores", "vehiculos"]
-          .map(seccion => {
-            const registros =
-              Array.isArray(datos[seccion])
-                ? datos[seccion]
-                : [];
+      const filas = ["conductores", "vehiculos"]
+        .map(seccion => {
+          const registros = Array.isArray(datos[seccion])
+            ? datos[seccion]
+            : [];
 
-            const conteo =
-              contarResultados(
-                registros,
-                seccion
-              );
+          const conteo = contarResultados(registros, seccion);
 
-            const nombre =
-              seccion === "conductores"
-                ? "CONDUCTORES"
-                : "VEHÍCULOS";
+          const nombre = seccion === "conductores"
+            ? "CONDUCTORES"
+            : "VEHÍCULOS";
 
-            return `
-              <tr>
-                <td class="resumen-seccion">
-                  ${nombre}
-                </td>
-
-                <td>
-                  ${conteo.total}
-                </td>
-
-                <td>
-                  <span
-                    class="
-                      resumen-error-numero
-                      ${
-                        conteo.errores === 0
-                          ? "resumen-sin-errores"
-                          : ""
-                      }
-                    "
-                  >
-                    ${conteo.errores}
-                  </span>
-                </td>
-
-                <td>
-                  <button
-                    class="resumen-ver"
-                    type="button"
-                    data-ver-errores="${seccion}"
-                  >
-                    VER ERRORES
-                  </button>
-                </td>
-              </tr>
-            `;
-          })
-          .join("");
+          return `
+            <tr>
+              <td class="resumen-seccion">${nombre}</td>
+              <td>${conteo.total}</td>
+              <td>
+                <span class="
+                  resumen-error-numero
+                  ${conteo.errores === 0 ? "resumen-sin-errores" : ""}
+                ">
+                  ${conteo.errores}
+                </span>
+              </td>
+              <td>
+                <button
+                  class="resumen-ver"
+                  type="button"
+                  data-ver-errores="${seccion}"
+                >
+                  VER ERRORES
+                </button>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
 
       contenedor.innerHTML = `
         <div class="resumen-general">
-
           <div class="resumen-general-cabecera">
-            <h2>
-              Resumen general de errores
-            </h2>
-
-            <p>
-              Selecciona VER ERRORES para ir al detalle.
-            </p>
+            <h2>Resumen general de errores</h2>
+            <p>Selecciona VER ERRORES para ir al detalle.</p>
           </div>
 
           <table>
@@ -1587,69 +1206,39 @@
                 <th>Acción</th>
               </tr>
             </thead>
-
-            <tbody>
-              ${filas}
-            </tbody>
+            <tbody>${filas}</tbody>
           </table>
-
         </div>
       `;
 
       contenedor
-        .querySelectorAll(
-          "[data-ver-errores]"
-        )
+        .querySelectorAll("[data-ver-errores]")
         .forEach(boton => {
-          boton.addEventListener(
-            "click",
-            () => {
-              cambiarSeccion(
-                boton.dataset.verErrores
-              );
-
-              abrirModalErrores();
-            }
-          );
+          boton.addEventListener("click", () => {
+            cambiarSeccion(boton.dataset.verErrores);
+            abrirModalErrores();
+          });
         });
     }
 
 
     function renderKpis() {
-      const registros =
-        obtenerRegistrosActuales();
-
-      const conteo =
-        contarResultados(
-          registros,
-          seccionActual
-        );
+      const registros = obtenerRegistrosActuales();
+      const conteo = contarResultados(registros, seccionActual);
 
       return `
         <section class="kpis">
-
           <button
             class="kpi kpi-total"
             type="button"
             data-accion-kpi="todos"
           >
             <span class="kpi-cabecera">
-              <span class="kpi-titulo">
-                Total registros
-              </span>
-
-              <span class="kpi-icono">
-                #
-              </span>
+              <span class="kpi-titulo">Total registros</span>
+              <span class="kpi-icono">#</span>
             </span>
-
-            <span class="kpi-valor">
-              ${conteo.total}
-            </span>
-
-            <span class="kpi-detalle">
-              Presiona para ver todos
-            </span>
+            <span class="kpi-valor">${conteo.total}</span>
+            <span class="kpi-detalle">Presiona para ver todos</span>
           </button>
 
           <button
@@ -1658,22 +1247,11 @@
             data-accion-kpi="correctos"
           >
             <span class="kpi-cabecera">
-              <span class="kpi-titulo">
-                Correctos
-              </span>
-
-              <span class="kpi-icono">
-                ✓
-              </span>
+              <span class="kpi-titulo">Correctos</span>
+              <span class="kpi-icono">✓</span>
             </span>
-
-            <span class="kpi-valor">
-              ${conteo.correctos}
-            </span>
-
-            <span class="kpi-detalle">
-              Sin observaciones
-            </span>
+            <span class="kpi-valor">${conteo.correctos}</span>
+            <span class="kpi-detalle">Sin observaciones</span>
           </button>
 
           <button
@@ -1682,173 +1260,92 @@
             data-accion-kpi="errores"
           >
             <span class="kpi-cabecera">
-              <span class="kpi-titulo">
-                Con errores
-              </span>
-
-              <span class="kpi-icono">
-                !
-              </span>
+              <span class="kpi-titulo">Con errores</span>
+              <span class="kpi-icono">!</span>
             </span>
-
-            <span class="kpi-valor">
-              ${conteo.errores}
-            </span>
-
-            <span class="kpi-detalle">
-              Presiona para ver cuáles son
-            </span>
+            <span class="kpi-valor">${conteo.errores}</span>
+            <span class="kpi-detalle">Presiona para ver cuáles son</span>
           </button>
-
         </section>
       `;
     }
 
 
     function renderTabla() {
-      const config =
-        configuracion[seccionActual];
+      const config = configuracion[seccionActual];
+      const registros = obtenerRegistrosFiltrados();
 
-      const registros =
-        obtenerRegistrosFiltrados();
-
-      const encabezados =
-        config.columnas
-          .map(columna => {
-            return `
-              <th>
-                ${
-                  renderTituloEncabezado(
-                    columna.titulo
-                  )
-                }
-              </th>
-            `;
-          })
-          .join("");
+      const encabezados = config.columnas
+        .map(columna => `
+          <th>${renderTituloEncabezado(columna.titulo)}</th>
+        `)
+        .join("");
 
       let cuerpo = "";
 
       if (!registros.length) {
         cuerpo = `
           <tr>
-            <td
-              colspan="${config.columnas.length}"
-              class="sin-resultados"
-            >
+            <td colspan="${config.columnas.length}" class="sin-resultados">
               No se encontraron registros.
             </td>
           </tr>
         `;
       } else {
-        cuerpo =
-          registros
-            .map(registro => {
-              const filaError =
-                !esCorrecto(registro);
+        cuerpo = registros
+          .map(registro => {
+            const filaError = !esCorrecto(registro);
 
-              const celdas =
-                config.columnas
-                  .map(columna => {
-                    return `
-                      <td
-                        class="${
-                          columna.principal
-                            ? "celda-principal"
-                            : ""
-                        }"
-                      >
-                        ${
-                          renderCelda(
-                            registro,
-                            columna
-                          )
-                        }
-                      </td>
-                    `;
-                  })
-                  .join("");
+            const celdas = config.columnas
+              .map(columna => `
+                <td class="${columna.principal ? "celda-principal" : ""}">
+                  ${renderCelda(registro, columna)}
+                </td>
+              `)
+              .join("");
 
-              return `
-                <tr
-                  class="${
-                    filaError
-                      ? "fila-error"
-                      : ""
-                  }"
-                >
-                  ${celdas}
-                </tr>
-              `;
-            })
-            .join("");
+            return `
+              <tr class="${filaError ? "fila-error" : ""}">
+                ${celdas}
+              </tr>
+            `;
+          })
+          .join("");
       }
 
       return `
         <section class="tabla-panel">
-
           <div class="tabla-informacion">
-
             <span>
-              Mostrando
-              <strong>
-                ${registros.length}
-              </strong>
-              de
-              <strong>
-                ${
-                  obtenerRegistrosActuales()
-                    .length
-                }
-              </strong>
+              Mostrando <strong>${registros.length}</strong>
+              de <strong>${obtenerRegistrosActuales().length}</strong>
               registros
             </span>
-
             <span class="tabla-leyenda">
               <span class="leyenda-roja"></span>
               Las filas rojas tienen observaciones
             </span>
-
           </div>
 
           <div class="tabla-scroll">
-
-            <table
-              class="tabla-${seccionActual}"
-            >
-              <thead>
-                <tr>
-                  ${encabezados}
-                </tr>
-              </thead>
-
-              <tbody>
-                ${cuerpo}
-              </tbody>
+            <table class="tabla-${seccionActual}">
+              <thead><tr>${encabezados}</tr></thead>
+              <tbody>${cuerpo}</tbody>
             </table>
-
           </div>
-
         </section>
       `;
     }
 
 
     function renderDashboard() {
-      const config =
-        configuracion[seccionActual];
+      const config = configuracion[seccionActual];
 
       contenidoPrincipal.innerHTML = `
         <section class="seccion-titulo">
-
           <div>
-            <h2>
-              ${escaparHtml(config.titulo)}
-            </h2>
-
-            <p>
-              ${escaparHtml(config.descripcion)}
-            </p>
+            <h2>${escaparHtml(config.titulo)}</h2>
+            <p>${escaparHtml(config.descripcion)}</p>
           </div>
 
           <button
@@ -1858,19 +1355,13 @@
           >
             Actualizar datos
           </button>
-
         </section>
 
         ${renderKpis()}
 
         <section class="herramientas">
-
           <div class="buscador-contenedor">
-
-            <span class="buscador-icono">
-              ⌕
-            </span>
-
+            <span class="buscador-icono">⌕</span>
             <input
               class="buscador"
               id="buscador"
@@ -1879,17 +1370,11 @@
               value="${escaparHtml(busquedaActual)}"
               autocomplete="off"
             >
-
           </div>
 
           <div class="filtros">
-
             <button
-              class="filtro ${
-                filtroActual === "todos"
-                  ? "activo"
-                  : ""
-              }"
+              class="filtro ${filtroActual === "todos" ? "activo" : ""}"
               type="button"
               data-filtro="todos"
             >
@@ -1897,11 +1382,7 @@
             </button>
 
             <button
-              class="filtro ${
-                filtroActual === "correctos"
-                  ? "activo"
-                  : ""
-              }"
+              class="filtro ${filtroActual === "correctos" ? "activo" : ""}"
               type="button"
               data-filtro="correctos"
             >
@@ -1909,28 +1390,16 @@
             </button>
 
             <button
-              class="
-                filtro
-                filtro-error
-                ${
-                  filtroActual === "errores"
-                    ? "activo"
-                    : ""
-                }
-              "
+              class="filtro filtro-error ${filtroActual === "errores" ? "activo" : ""}"
               type="button"
               data-filtro="errores"
             >
               Con errores
             </button>
-
           </div>
-
         </section>
 
-        <div id="contenedorTabla">
-          ${renderTabla()}
-        </div>
+        <div id="contenedorTabla">${renderTabla()}</div>
       `;
 
       conectarEventosDashboard();
@@ -1939,105 +1408,66 @@
 
     function actualizarSoloTabla() {
       const contenedorTabla =
-        document.getElementById(
-          "contenedorTabla"
-        );
+        document.getElementById("contenedorTabla");
 
       if (contenedorTabla) {
-        contenedorTabla.innerHTML =
-          renderTabla();
+        contenedorTabla.innerHTML = renderTabla();
       }
 
-      document
-        .querySelectorAll("[data-filtro]")
-        .forEach(boton => {
-          boton.classList.toggle(
-            "activo",
-            boton.dataset.filtro ===
-              filtroActual
-          );
-        });
+      document.querySelectorAll("[data-filtro]").forEach(boton => {
+        boton.classList.toggle(
+          "activo",
+          boton.dataset.filtro === filtroActual
+        );
+      });
     }
 
 
     function conectarEventosDashboard() {
       const botonRecargar =
-        document.getElementById(
-          "botonRecargar"
-        );
+        document.getElementById("botonRecargar");
 
       const buscador =
-        document.getElementById(
-          "buscador"
-        );
+        document.getElementById("buscador");
 
-      botonRecargar?.addEventListener(
-        "click",
-        cargarDatos
-      );
+      botonRecargar?.addEventListener("click", cargarDatos);
 
-      buscador?.addEventListener(
-        "input",
-        evento => {
-          busquedaActual =
-            evento.target.value;
+      buscador?.addEventListener("input", evento => {
+        busquedaActual = evento.target.value;
+        actualizarSoloTabla();
+      });
 
+      document.querySelectorAll("[data-filtro]").forEach(boton => {
+        boton.addEventListener("click", () => {
+          filtroActual = boton.dataset.filtro;
           actualizarSoloTabla();
-        }
-      );
-
-      document
-        .querySelectorAll("[data-filtro]")
-        .forEach(boton => {
-          boton.addEventListener(
-            "click",
-            () => {
-              filtroActual =
-                boton.dataset.filtro;
-
-              actualizarSoloTabla();
-            }
-          );
         });
+      });
 
-      document
-        .querySelectorAll(
-          "[data-accion-kpi]"
-        )
-        .forEach(boton => {
-          boton.addEventListener(
-            "click",
-            () => {
-              const accion =
-                boton.dataset.accionKpi;
+      document.querySelectorAll("[data-accion-kpi]").forEach(boton => {
+        boton.addEventListener("click", () => {
+          const accion = boton.dataset.accionKpi;
 
-              if (accion === "errores") {
-                abrirModalErrores();
-                return;
-              }
+          if (accion === "errores") {
+            abrirModalErrores();
+            return;
+          }
 
-              filtroActual = accion;
-              actualizarSoloTabla();
-            }
-          );
+          filtroActual = accion;
+          actualizarSoloTabla();
         });
+      });
     }
 
 
     function abrirModalErrores() {
-      const registros =
-        ordenarPorEmpresa(
-          obtenerRegistrosActuales()
-            .filter(
-              registro => !esCorrecto(registro)
-            )
-        );
+      const registros = ordenarPorEmpresa(
+        obtenerRegistrosActuales()
+          .filter(registro => !esCorrecto(registro))
+      );
 
-      const config =
-        configuracion[seccionActual];
-
-      const modalConfig =
-        config.modal;
+      const config = configuracion[seccionActual];
+      const modalConfig = config.modal;
 
       modalTitulo.textContent =
         seccionActual === "conductores"
@@ -2050,119 +1480,60 @@
       if (!registros.length) {
         modalCuerpo.innerHTML = `
           <div class="modal-vacio">
-            <strong>
-              ✓ No hay registros con errores.
-            </strong>
+            <strong>✓ No hay registros con errores.</strong>
           </div>
         `;
       } else {
         modalCuerpo.innerHTML = `
           <div class="lista-errores">
-
             ${
-              registros
-                .map(registro => {
-                  return `
-                    <article class="error-item">
+              registros.map(registro => `
+                <article class="error-item">
+                  <div class="error-dato">
+                    <span class="error-etiqueta">
+                      ${escaparHtml(modalConfig.identificadorTitulo)}
+                    </span>
+                    <span class="error-valor">
+                      ${escaparHtml(registro[modalConfig.identificador]) || "—"}
+                    </span>
+                  </div>
 
-                      <div class="error-dato">
-                        <span class="error-etiqueta">
-                          ${
-                            escaparHtml(
-                              modalConfig
-                                .identificadorTitulo
-                            )
-                          }
-                        </span>
+                  <div class="error-dato">
+                    <span class="error-etiqueta">
+                      ${escaparHtml(modalConfig.nombreTitulo)}
+                    </span>
+                    <span class="error-valor">
+                      ${escaparHtml(registro[modalConfig.nombre]) || "—"}
+                    </span>
+                  </div>
 
-                        <span class="error-valor">
-                          ${
-                            escaparHtml(
-                              registro[
-                                modalConfig
-                                  .identificador
-                              ]
-                            ) || "—"
-                          }
-                        </span>
-                      </div>
+                  <div class="error-dato">
+                    <span class="error-etiqueta">Empresa hoy</span>
+                    <span class="error-valor">
+                      ${escaparHtml(registro.empresa) || "—"}
+                    </span>
+                  </div>
 
-                      <div class="error-dato">
-                        <span class="error-etiqueta">
-                          ${
-                            escaparHtml(
-                              modalConfig.nombreTitulo
-                            )
-                          }
-                        </span>
-
-                        <span class="error-valor">
-                          ${
-                            escaparHtml(
-                              registro[
-                                modalConfig.nombre
-                              ]
-                            ) || "—"
-                          }
-                        </span>
-                      </div>
-
-                      <div class="error-dato">
-                        <span class="error-etiqueta">
-                          Empresa hoy
-                        </span>
-
-                        <span class="error-valor">
-                          ${
-                            escaparHtml(
-                              registro.empresa
-                            ) || "—"
-                          }
-                        </span>
-                      </div>
-
-                      <div
-                        class="
-                          error-dato
-                          error-resultado
-                        "
-                      >
-                        <span class="error-etiqueta">
-                          Observación
-                        </span>
-
-                        <span class="error-valor">
-                          ${
-                            escaparHtml(
-                              registro
-                                .resultado_general
-                            ) ||
-                            "SIN INFORMACIÓN"
-                          }
-                        </span>
-                      </div>
-
-                    </article>
-                  `;
-                })
-                .join("")
+                  <div class="error-dato error-resultado">
+                    <span class="error-etiqueta">Observación</span>
+                    <span class="error-valor">
+                      ${escaparHtml(registro.resultado_general) || "SIN INFORMACIÓN"}
+                    </span>
+                  </div>
+                </article>
+              `).join("")
             }
-
           </div>
         `;
       }
 
       modalFondo.classList.add("visible");
-      document.body.style.overflow =
-        "hidden";
+      document.body.style.overflow = "hidden";
     }
 
 
     function cerrarModal() {
-      modalFondo.classList.remove(
-        "visible"
-      );
-
+      modalFondo.classList.remove("visible");
       document.body.style.overflow = "";
     }
 
@@ -2176,15 +1547,12 @@
       filtroActual = "todos";
       busquedaActual = "";
 
-      document
-        .querySelectorAll("[data-seccion]")
-        .forEach(boton => {
-          boton.classList.toggle(
-            "activa",
-            boton.dataset.seccion ===
-              nuevaSeccion
-          );
-        });
+      document.querySelectorAll("[data-seccion]").forEach(boton => {
+        boton.classList.toggle(
+          "activa",
+          boton.dataset.seccion === nuevaSeccion
+        );
+      });
 
       renderDashboard();
     }
@@ -2193,32 +1561,15 @@
     function mostrarError(error) {
       console.error(error);
 
-      ultimaActualizacion.textContent =
-        "No disponible";
+      ultimaActualizacion.textContent = "No disponible";
 
       contenidoPrincipal.innerHTML = `
         <div class="mensaje-error">
-
-          <h2>
-            No se pudieron cargar los datos
-          </h2>
-
-          <p>
-            El Worker no pudo obtener el JSON.
-          </p>
-
-          <p>
-            Verifica el Secret:
-          </p>
-
-          <code>
-            CONTROL_CHOFERES_JSON_URL
-          </code>
-
-          <p>
-            ${escaparHtml(error.message)}
-          </p>
-
+          <h2>No se pudieron cargar los datos</h2>
+          <p>El Worker no pudo obtener el JSON.</p>
+          <p>Verifica el Secret:</p>
+          <code>CONTROL_CHOFERES_JSON_URL</code>
+          <p>${escaparHtml(error.message)}</p>
         </div>
       `;
     }
@@ -2237,106 +1588,72 @@
       try {
         const respuesta = await fetch(
           `${ARCHIVO_JSON}?v=${Date.now()}`,
-          {
-            cache: "no-store"
-          }
+          { cache: "no-store" }
         );
 
         if (!respuesta.ok) {
           let detalle = "";
 
           try {
-            const errorJson =
-              await respuesta.json();
-
-            detalle =
-              errorJson.detalle ||
-              errorJson.error ||
-              "";
+            const errorJson = await respuesta.json();
+            detalle = errorJson.detalle || errorJson.error || "";
           } catch {
             detalle = "";
           }
 
           throw new Error(
-            detalle ||
-            `Error HTTP ${respuesta.status}`
+            detalle || `Error HTTP ${respuesta.status}`
           );
         }
 
-        const json =
-          await respuesta.json();
+        const json = await respuesta.json();
 
         datos = {
-          actualizado:
-            textoSeguro(json.actualizado),
-
-          conductores:
-            Array.isArray(json.conductores)
-              ? json.conductores
-              : [],
-
-          vehiculos:
-            Array.isArray(json.vehiculos)
-              ? json.vehiculos
-              : []
+          actualizado: textoSeguro(json.actualizado),
+          conductores: Array.isArray(json.conductores)
+            ? json.conductores
+            : [],
+          vehiculos: Array.isArray(json.vehiculos)
+            ? json.vehiculos
+            : []
         };
 
         ultimaActualizacion.textContent =
-          formatearFechaActualizacion(
-            datos.actualizado
-          );
+          formatearFechaActualizacion(datos.actualizado);
 
         renderResumenGeneral();
         renderDashboard();
-
       } catch (error) {
         mostrarError(error);
       }
     }
 
 
-    document
-      .querySelectorAll("[data-seccion]")
-      .forEach(boton => {
-        boton.addEventListener(
-          "click",
-          () => {
-            cambiarSeccion(
-              boton.dataset.seccion
-            );
-          }
-        );
+    document.querySelectorAll("[data-seccion]").forEach(boton => {
+      boton.addEventListener("click", () => {
+        cambiarSeccion(boton.dataset.seccion);
       });
+    });
 
 
-    modalCerrar.addEventListener(
-      "click",
-      cerrarModal
-    );
+    modalCerrar.addEventListener("click", cerrarModal);
 
 
-    modalFondo.addEventListener(
-      "click",
-      evento => {
-        if (evento.target === modalFondo) {
-          cerrarModal();
-        }
+    modalFondo.addEventListener("click", evento => {
+      if (evento.target === modalFondo) {
+        cerrarModal();
       }
-    );
+    });
 
 
-    document.addEventListener(
-      "keydown",
-      evento => {
-        if (evento.key === "Escape") {
-          cerrarModal();
-        }
+    document.addEventListener("keydown", evento => {
+      if (evento.key === "Escape") {
+        cerrarModal();
       }
-    );
+    });
 
 
     cargarDatos();
   </script>
-
 </body>
 </html>
